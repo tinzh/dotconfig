@@ -1,0 +1,16 @@
+telescope: keybindings for more commands
+fugitive
+harpoon
+conflict-marker.nvim? for git conflict resolution
+terminal: open to below all splits except neotree
+terminal: have multiple terminals
+tmux
+better setup script
+
+for learning:
+neotree keybindings
+commenting keybindings
+window switching: how to switch buffer to another window, swap buffers, etc.
+insert mode ctrl commands
+motions
+VimBeGood
