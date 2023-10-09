@@ -5,7 +5,8 @@ conflict-marker.nvim? for git conflict resolution
 terminal: open to below all splits except neotree
 terminal: have multiple terminals
 tmux
-better setup script
+better setup script (maybe make it an md?)
+lsp
 
 for learning:
 neotree keybindings
