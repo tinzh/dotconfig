@@ -1,30 +1,30 @@
-local keymap = vim.keymap
+local keymap = vim.keymap.set
 
 vim.g.mapleader = " "
 
 -- "kj" to escape
-keymap.set({"i", "v", "c"}, "kj", "<Esc>", { desc = "Exit" })
-keymap.set("t", "kj", "<C-\\><C-n>", { desc = "Exit" })
+keymap({"i", "v", "c"}, "kj", "<Esc>", { desc = "Exit" })
+keymap("t", "kj", "<C-\\><C-n>", { desc = "Exit" })
 
 -- remove highlighting
-keymap.set("n", "<leader>nl", "<cmd>nohl<CR>", { desc = "Remove highlighting" })
+keymap("n", "<leader>nl", "<cmd>nohl<CR>", { desc = "Remove highlighting" })
 
 -- de-indent in insert mode
-keymap.set("i", "<S-Tab>", "", { desc = "De-indent" })
+keymap("i", "<S-Tab>", "", { desc = "De-indent" })
 
 -- comment with <C-/>
-keymap.set("i", "", "<Esc>gcci<C-f>", { remap = true, desc = "Comment current line" })
-keymap.set("n", "", "gcc", { remap = true, desc = "Comment current line"})
-keymap.set("v", "", "gc", { remap = true, desc = "Comment block" })
+keymap("i", "", "<Esc>gcci<C-f>", { remap = true, desc = "Comment current line" })
+keymap("n", "", "gcc", { remap = true, desc = "Comment current line"})
+keymap("v", "", "gc", { remap = true, desc = "Comment block" })
 
 -- surround with s
-keymap.set("v", "s", "S", { remap = true, desc = "Surround with s"})
+keymap("v", "s", "S", { remap = true, desc = "Surround with s"})
 
 -- quit all windows
-keymap.set("n", "<leader>q", "<cmd>wa<CR><cmd>qa<CR>", { desc = "Save and quit all buffers" })
+keymap("n", "<leader>q", "<cmd>wa<CR><cmd>qa<CR>", { desc = "Save and quit all buffers" })
 
 -- better scrolling
-keymap.set(
+keymap(
     "n", 
     "<C-d>", 
     function()
@@ -38,7 +38,7 @@ keymap.set(
     end, 
     { expr = true, desc = "Jump"  }
 )
-keymap.set(
+keymap(
     "n", 
     "<C-u>", 
     function()
@@ -54,15 +54,23 @@ keymap.set(
 )
 
 -- telescope
-keymap.set("n", "<leader>f", "<cmd>Telescope find_files<CR>", { desc = "Open Telescope" })
-keymap.set("n", "<leader>F", "<cmd>Telescope git_files<CR>", { desc = "Open Telescope with files tracked by Git" })
+keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", { desc = "Open Telescope" })
+keymap("n", "<leader>F", "<cmd>Telescope git_files<CR>", { desc = "Open Telescope with files tracked by Git" })
+
+-- harpoon
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+keymap("n", "<leader>h", ui.toggle_quick_menu, { desc = "Toggle Harpoon menu" })
+keymap("n", "<leader>ha", function() mark.toggle_file(mark.get_current_index()) end, { desc = "Toggle file to Harpoon" })
+keymap("n", "<leader>hk", ui.nav_next, { desc = "Go to next Harpoon mark" })
+keymap("n", "<leader>hj", ui.nav_prev, { desc = "Go to previous Harpoon mark" })
 
 -- git
-keymap.set("n", "<leader>gh", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk" })
-keymap.set("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
+keymap("n", "<leader>gh", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk" })
+keymap("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
 
 -- open terminal below, or toggle focus to it
-keymap.set(
+keymap(
     "n", 
     "<leader>'", 
     function()
@@ -77,6 +85,7 @@ keymap.set(
             bufname = vim.fn.bufname(vim.fn.winbufnr(win))
             if string.find(bufname, "term://", 1, true) then
                 vim.api.nvim_set_current_win(win)
+		vim.cmd("startinsert")
                 return
             end
         end
@@ -86,22 +95,23 @@ keymap.set(
         vim.cmd("terminal")
         vim.cmd("wincmd 7-")
         wd = vim.fn.getcwd()
-        vim.api.nvim_feedkeys("cd " .. wd .. "\nclear\n", "m", false)
+        -- vim.api.nvim_feedkeys("cd " .. wd .. "\nclear\ni", "m", false)
+	vim.cmd("startinsert")
     end,
     { desc = "Open terminal" }
 )
 
 -- windows and splitting
-keymap.set("n", "<leader>sh", "<cmd>set nosplitright<CR><C-w>v<cmd>set splitright<CR>", { desc = "Split window vertically left" })
-keymap.set("n", "<leader>sl", "<C-w>v", { desc = "Split window vertically right" })
-keymap.set("n", "<leader>sj", "<C-w>s", { desc = "Split window horizontally below" })
-keymap.set("n", "<leader>sk", "<cmd>set nosplitbelow<CR><C-w>s<cmd>set splitbelow<CR>", { desc = "Split window horizontally above" })
-keymap.set("n", "<leader>w;", "<C-w>q", { desc = "Close window", remap = true })
-keymap.set("n", "<leader>w", "<C-w>", { desc = "Easier <C-w>" })
+keymap("n", "<leader>sh", "<cmd>set nosplitright<CR><C-w>v<cmd>set splitright<CR>", { desc = "Split window vertically left" })
+keymap("n", "<leader>sl", "<C-w>v", { desc = "Split window vertically right" })
+keymap("n", "<leader>sj", "<C-w>s", { desc = "Split window horizontally below" })
+keymap("n", "<leader>sk", "<cmd>set nosplitbelow<CR><C-w>s<cmd>set splitbelow<CR>", { desc = "Split window horizontally above" })
+keymap("n", "<leader>;", "<C-w>q", { desc = "Close window", remap = true })
+keymap("n", "<leader>w", "<C-w>", { desc = "Easier <C-w>" })
     
 -- tabs
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
-keymap.set("n", "<leader>t;", "<cmd>tabclose<CR>", { desc = "Close current tab" })
-keymap.set("n", "<leader>tj", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
-keymap.set("n", "<leader>tk", "<cmd>tabn<CR>", { desc = "Go to next tab" })
-keymap.set("n", "<leader>tO", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+keymap("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
+keymap("n", "<leader>t;", "<cmd>tabclose<CR>", { desc = "Close current tab" })
+keymap("n", "<leader>tj", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
+keymap("n", "<leader>tk", "<cmd>tabn<CR>", { desc = "Go to next tab" })
+keymap("n", "<leader>tO", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })

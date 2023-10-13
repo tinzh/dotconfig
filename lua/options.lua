@@ -13,6 +13,9 @@ opt.autoindent = true
 -- line wrapping
 opt.wrap = false
 
+-- colors
+opt.termguicolors = false
+
 -- searching
 opt.ignorecase = true
 opt.smartcase = true
@@ -31,6 +34,7 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- keep undos between sessions
+opt.updatetime = 750
 opt.undofile = true
 
 -- ruler

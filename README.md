@@ -1,5 +1,15 @@
 # Setup my terminal, Neovim, etc.
 
+### Clone repo
+
+```
+mkdir -p $HOME/.config
+pushd $HOME/.config
+rm -rf nvim
+git clone git@github.com:tinzh/dotconfig.git nvim
+popd
+```
+
 ### oh-my-zsh
 
 ```

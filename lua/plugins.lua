@@ -5,8 +5,7 @@ plugins = {
     -- list available keymaps
     {
         "folke/which-key.nvim",
-        lazy = VeryLazy,
-        init = function() 
+        init = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
         end,
@@ -14,10 +13,10 @@ plugins = {
 
     -- color theme
     {
-        "ful1e5/onedark.nvim",
+        "EdenEast/nightfox.nvim",
         priority = 1000,
         config = function()
-            vim.cmd("colorscheme onedark")
+            vim.cmd("colorscheme nordfox")
         end,
     },
 
@@ -43,7 +42,7 @@ plugins = {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
             options = {
-                theme = "onedark",
+                theme = "nord",
             },
             sections = {
                 lualine_c = { { 'filename', path = 1 } },
@@ -80,19 +79,18 @@ plugins = {
     {
         "rmagatti/auto-session",
         opts = {
-            pre_save_cmds = { 
+            pre_save_cmds = {
                 function()
                     current_tab = vim.fn.tabpagenr()
                     vim.cmd("tabdo Neotree close")
                     vim.cmd("Neotree close")
                     vim.cmd.tabnext(current_tab)
                     vim.cmd("Neotree close")
-
                 end
             },
             post_restore_cmds = { "Neotree show", function() restore_done = true end },
         },
-        config = function(_, opts) 
+        config = function(_, opts)
             require("auto-session").setup(opts)
         end,
     },
@@ -105,20 +103,89 @@ plugins = {
         config = function()
             require("nvim-surround").setup()
         end,
-    }
+    },
+
+    -- preview registers
+    {
+        "tversteeg/registers.nvim",
+        config = function()
+            require("registers").setup({ window = { border = "single" } })
+        end,
+    },
+
+    -- git
+    {
+        "tpope/vim-fugitive",
+    },
+
+    -- file finding
+    {
+        "theprimeagen/harpoon",
+        dependencies = {
+            "nvim-lua/plenary.nvim"
+        },
+    },
+
+    -- treesitter
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function()
+            local configs = require("nvim-treesitter.configs")
+
+            configs.setup({
+                highlight = { enable = true },
+                indent = {
+                    enable = true,
+                    disable = { "lua" },
+                },
+            })
+        end,
+    },
+
+    -- lsp
+    {
+        "VonHeikemen/lsp-zero.nvim",
+        branch = "v3.x",
+        config = function()
+            local lsp_zero = require("lsp-zero")
+
+            lsp_zero.on_attach(
+                function(_, bufnr)
+                    lsp_zero.default_keymaps({ buffer = bufnr })
+                end
+            )
+
+            require("mason").setup()
+            require("mason-lspconfig").setup({
+                ensure_installed = { "clangd", "lua_ls", "marksman", "pyright" },
+                handlers = {
+                    lsp_zero.default_setup,
+                },
+            })
+        end,
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "neovim/nvim-lspconfig",
+            "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-nvim-lsp",
+            "L3MON4D3/LuaSnip",
+        },
+    },
 }
 
 -- get lazy.nvim if not present
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 

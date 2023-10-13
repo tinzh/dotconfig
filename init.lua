@@ -1,4 +1,6 @@
+os.execute("git pull > test")
+
 require("options")
-require("keymaps")
 require("plugins")
+require("keymaps")
 require("autocmds")
