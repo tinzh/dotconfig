@@ -5,16 +5,18 @@ harpoon config
 quickfix navigation
 lsp
 
-primeagen key maps (including quickfix navgiation, substitue current word)
+primeagen key maps (including quickfix navgiation, substitute current word)
 tmux sessionizer
 
 for learning:
+lsp keybindings: help lsp-zero-keybindings
+
 fugitive, all of it
     vimcasts? http://vimcasts.org/episodes/fugitive-vim-working-with-the-git-index/
-neotree keybindings
-commenting keybindings
 window switching: how to switch buffer to another window, swap buffers, etc.
 insert mode ctrl commands
 look up more keymaps
 motions
 VimBeGood
+neotree keybindings
+commenting keybindings

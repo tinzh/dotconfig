@@ -1,4 +1,4 @@
-os.execute("git pull > test")
+os.execute("git pull")
 
 require("options")
 require("plugins")

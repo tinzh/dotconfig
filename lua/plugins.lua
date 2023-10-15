@@ -156,6 +156,16 @@ plugins = {
                 end
             )
 
+            -- use tab and enter to navigate snippet selection
+            local cmp = require("cmp")
+            cmp.setup({
+                mapping = cmp.mapping.preset.insert({
+                    ["<CR>"] = cmp.mapping.confirm({ selected = true }),
+                    ["<Tab>"] = lsp_zero.cmp_action().luasnip_supertab(),
+                    ["<S-Tab>"] = lsp_zero.cmp_action().luasnip_shift_supertab(),
+                })
+            })
+
             require("mason").setup()
             require("mason-lspconfig").setup({
                 ensure_installed = { "clangd", "lua_ls", "marksman", "pyright" },
