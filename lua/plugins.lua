@@ -183,6 +183,14 @@ plugins = {
             "L3MON4D3/LuaSnip",
         },
     },
+
+    -- autosave
+    {
+        "pocco81/auto-save.nvim",
+        config = function()
+            require("auto-save").setup()
+        end,
+    },
 }
 
 -- get lazy.nvim if not present
