@@ -36,6 +36,7 @@ opt.splitbelow = true
 -- keep undos between sessions
 opt.updatetime = 750
 opt.undofile = true
+opt.swapfile = false
 
 -- ruler
 opt.colorcolumn = "80"

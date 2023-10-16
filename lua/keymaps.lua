@@ -27,30 +27,14 @@ keymap("n", "<leader>q", "<cmd>wa<CR><cmd>qa<CR>", { desc = "Save and quit all b
 keymap(
     "n", 
     "<C-d>", 
-    function()
-        curr_height = vim.fn.winheight(0)
-        ans = ""
-
-        for _ = 1, curr_height/2, 1 do
-            ans = ans .. "jzz:sleep 1m<CR>"
-        end
-        return ans
-    end, 
-    { expr = true, desc = "Jump"  }
+    "<C-d>zz",
+    { desc = "Jump"  }
 )
 keymap(
     "n", 
     "<C-u>", 
-    function()
-        curr_height = vim.fn.winheight(0)
-        ans = ""
-
-        for _ = 1, curr_height/2, 1 do
-            ans = ans .. "kzz:sleep 1m<CR>"
-        end
-        return ans
-    end, 
-    { expr = true, desc = "Jump"  }
+    "<C-u>zz",
+    { desc = "Jump"  }
 )
 
 -- telescope
@@ -70,36 +54,34 @@ keymap("n", "<leader>gh", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Pre
 keymap("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
 
 -- open terminal below, or toggle focus to it
-keymap(
-    "n", 
-    "<leader>'", 
-    function()
-        -- if focus is on a terminal, move focus away
-        if string.find(vim.fn.bufname(), "term://", 1, true) then
-            vim.cmd("wincmd p")
+local toggle_terminal = function()
+    -- if focus is on a terminal, move focus away
+    if string.find(vim.fn.bufname(), "term://", 1, true) then
+        vim.cmd("wincmd p")
+        return
+    end
+
+    -- if tab has a terminal, move focus to it
+    for _, win in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+        bufname = vim.fn.bufname(vim.fn.winbufnr(win))
+        if string.find(bufname, "term://", 1, true) then
+            vim.api.nvim_set_current_win(win)
+            vim.cmd("startinsert")
             return
         end
+    end
 
-        -- if tab has a terminal, move focus to it
-        for _, win in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-            bufname = vim.fn.bufname(vim.fn.winbufnr(win))
-            if string.find(bufname, "term://", 1, true) then
-                vim.api.nvim_set_current_win(win)
-		vim.cmd("startinsert")
-                return
-            end
-        end
+    -- no terminal found, create new terminal
+    vim.cmd("wincmd s")
+    vim.cmd("terminal")
+    vim.cmd("wincmd 7-")
+    wd = vim.fn.getcwd()
+    -- vim.api.nvim_feedkeys("cd " .. wd .. "\nclear\ni", "m", false)
+    vim.cmd("startinsert")
+end
 
-        -- no terminal found, create new terminal
-        vim.cmd("wincmd s")
-        vim.cmd("terminal")
-        vim.cmd("wincmd 7-")
-        wd = vim.fn.getcwd()
-        -- vim.api.nvim_feedkeys("cd " .. wd .. "\nclear\ni", "m", false)
-	vim.cmd("startinsert")
-    end,
-    { desc = "Open terminal" }
-)
+keymap({ "n", "t" }, "<C-G>", toggle_terminal, { desc = "Toggle terminal" })
+keymap("n", "<leader>'", toggle_terminal, { desc = "Open terminal" })
 
 -- windows and splitting
 keymap("n", "<leader>sh", "<cmd>set nosplitright<CR><C-w>v<cmd>set splitright<CR>", { desc = "Split window vertically left" })

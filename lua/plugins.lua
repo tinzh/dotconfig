@@ -1,7 +1,7 @@
 plugins = {
     -- only set relativenumber on focused window
     "sitiom/nvim-numbertoggle",
-
+    
     -- list available keymaps
     {
         "folke/which-key.nvim",
@@ -10,7 +10,7 @@ plugins = {
             vim.o.timeoutlen = 300
         end,
     },
-
+    
     -- color theme
     {
         "EdenEast/nightfox.nvim",
@@ -19,7 +19,7 @@ plugins = {
             vim.cmd("colorscheme nordfox")
         end,
     },
-
+    
     -- file tree
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -35,7 +35,7 @@ plugins = {
             },
         },
     },
-
+    
     -- statusline
     {
         "nvim-lualine/lualine.nvim",
@@ -50,7 +50,7 @@ plugins = {
             },
         },
     },
-
+    
     -- comment/uncomment blocks of code easily
     {
         "numToStr/Comment.nvim",
@@ -59,14 +59,14 @@ plugins = {
             require("Comment").setup()
         end,
     },
-
+    
     -- fuzzy finder
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
         dependencies = { "nvim-lua/plenary.nvim" },
     },
-
+    
     -- git changes in gutter
     {
         "lewis6991/gitsigns.nvim",
@@ -74,27 +74,27 @@ plugins = {
             require("gitsigns").setup()
         end,
     },
-
-    -- save session by working directory
-    {
-        "rmagatti/auto-session",
-        opts = {
-            pre_save_cmds = {
-                function()
-                    current_tab = vim.fn.tabpagenr()
-                    vim.cmd("tabdo Neotree close")
-                    vim.cmd("Neotree close")
-                    vim.cmd.tabnext(current_tab)
-                    vim.cmd("Neotree close")
-                end
-            },
-            post_restore_cmds = { "Neotree show", function() restore_done = true end },
-        },
-        config = function(_, opts)
-            require("auto-session").setup(opts)
-        end,
-    },
-
+    
+    -- -- save session by working directory
+    -- {
+    --     "rmagatti/auto-session",
+    --     opts = {
+    --         pre_save_cmds = {
+    --             function()
+    --                 current_tab = vim.fn.tabpagenr()
+    --                 vim.cmd("tabdo Neotree close")
+    --                 vim.cmd("Neotree close")
+    --                 vim.cmd.tabnext(current_tab)
+    --                 vim.cmd("Neotree close")
+    --             end
+    --         },
+    --         post_restore_cmds = { "Neotree show", function() restore_done = true end },
+    --     },
+    --     config = function(_, opts)
+    --         require("auto-session").setup(opts)
+    --     end,
+    -- },
+    
     -- surround text
     {
         "kylechui/nvim-surround",
@@ -104,7 +104,7 @@ plugins = {
             require("nvim-surround").setup()
         end,
     },
-
+    
     -- preview registers
     {
         "tversteeg/registers.nvim",
@@ -112,12 +112,12 @@ plugins = {
             require("registers").setup({ window = { border = "single" } })
         end,
     },
-
+    
     -- git
     {
         "tpope/vim-fugitive",
     },
-
+    
     -- file finding
     {
         "theprimeagen/harpoon",
@@ -125,14 +125,14 @@ plugins = {
             "nvim-lua/plenary.nvim"
         },
     },
-
+    
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         config = function()
             local configs = require("nvim-treesitter.configs")
-
+    
             configs.setup({
                 highlight = { enable = true },
                 indent = {
@@ -142,20 +142,20 @@ plugins = {
             })
         end,
     },
-
+    
     -- lsp
     {
         "VonHeikemen/lsp-zero.nvim",
         branch = "v3.x",
         config = function()
             local lsp_zero = require("lsp-zero")
-
+    
             lsp_zero.on_attach(
                 function(_, bufnr)
                     lsp_zero.default_keymaps({ buffer = bufnr })
                 end
             )
-
+    
             -- use tab and enter to navigate snippet selection
             local cmp = require("cmp")
             cmp.setup({
@@ -165,7 +165,7 @@ plugins = {
                     ["<S-Tab>"] = lsp_zero.cmp_action().luasnip_shift_supertab(),
                 })
             })
-
+    
             require("mason").setup()
             require("mason-lspconfig").setup({
                 handlers = {
@@ -182,7 +182,7 @@ plugins = {
             "L3MON4D3/LuaSnip",
         },
     },
-
+    
     -- autosave
     {
         "pocco81/auto-save.nvim",
