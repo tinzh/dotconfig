@@ -20,6 +20,9 @@ keymap("v", "", "gc", { remap = true, desc = "Comment block" })
 -- surround with s
 keymap("v", "s", "S", { remap = true, desc = "Surround with s"})
 
+-- replace current word
+keymap("n", "<leader>r", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]], { desc = "Replace current word" })
+
 -- quit all windows
 keymap("n", "<leader>q", "<cmd>wa<CR><cmd>qa<CR>", { desc = "Save and quit all buffers" })
 
@@ -46,8 +49,8 @@ local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 keymap("n", "<leader>h", ui.toggle_quick_menu, { desc = "Toggle Harpoon menu" })
 keymap("n", "<leader>ha", function() mark.toggle_file(mark.get_current_index()) end, { desc = "Toggle file to Harpoon" })
-keymap("n", "<leader>hk", ui.nav_next, { desc = "Go to next Harpoon mark" })
-keymap("n", "<leader>hj", ui.nav_prev, { desc = "Go to previous Harpoon mark" })
+keymap("n", "<leader>gk", ui.nav_next, { desc = "Go to next Harpoon mark" })
+keymap("n", "<leader>gj", ui.nav_prev, { desc = "Go to previous Harpoon mark" })
 
 -- git
 keymap("n", "<leader>gh", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk" })

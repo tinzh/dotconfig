@@ -8,6 +8,8 @@ lsp
 primeagen key maps (including quickfix navgiation, substitute current word)
 tmux sessionizer
 
+automatic indentation detection
+
 for learning:
 lsp keybindings: help lsp-zero-keybindings
 
