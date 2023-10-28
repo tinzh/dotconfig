@@ -13,10 +13,10 @@ plugins = {
 
     -- color theme
     {
-        "EdenEast/nightfox.nvim",
+        "Mofiqul/vscode.nvim",
         priority = 1000,
         config = function()
-            vim.cmd("colorscheme nordfox")
+            require("vscode").load()
         end,
     },
 
@@ -42,7 +42,7 @@ plugins = {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
             options = {
-                theme = "nord",
+                theme = "codedark",
             },
             sections = {
                 lualine_c = { { 'filename', path = 1 } },
