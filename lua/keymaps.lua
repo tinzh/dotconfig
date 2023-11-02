@@ -12,6 +12,10 @@ keymap("n", "<leader>nl", "<cmd>nohl<CR>", { desc = "Remove highlighting" })
 -- de-indent in insert mode
 keymap("i", "<S-Tab>", "", { desc = "De-indent" })
 
+-- insert line before/after
+keymap("n", "<leader>o", "o<Esc>k", { desc = "Add one line below" })
+keymap("n", "<leader>O", "O<Esc>k", { desc = "Add one line above" })
+
 -- comment with <C-/>
 keymap("i", "", "<Esc>gcci<C-f>", { remap = true, desc = "Comment current line" })
 keymap("n", "", "gcc", { remap = true, desc = "Comment current line"})

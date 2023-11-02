@@ -10,6 +10,10 @@ opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
 
+-- keymap timeout
+opt.timeout = true
+opt.timeoutlen = 300
+
 -- line wrapping
 opt.wrap = false
 
