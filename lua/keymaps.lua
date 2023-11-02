@@ -9,12 +9,15 @@ keymap("t", "kj", "<C-\\><C-n>", { desc = "Exit" })
 -- remove highlighting
 keymap("n", "<leader>nl", "<cmd>nohl<CR>", { desc = "Remove highlighting" })
 
+
+
+
 -- de-indent in insert mode
 keymap("i", "<S-Tab>", "", { desc = "De-indent" })
 
 -- insert line before/after
-keymap("n", "<leader>o", "o<Esc>k", { desc = "Add one line below" })
-keymap("n", "<leader>O", "O<Esc>k", { desc = "Add one line above" })
+keymap("n", "<CR>", function() vim.fn.append(vim.fn.line("."), "") end, { desc = "Add one line below" })
+keymap("n", "<leader><CR>", function() vim.fn.append(vim.fn.line(".")-1, "") end, { desc = "Add one line above" })
 
 -- comment with <C-/>
 keymap("i", "", "<Esc>gcci<C-f>", { remap = true, desc = "Comment current line" })
