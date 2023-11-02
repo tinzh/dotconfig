@@ -40,6 +40,9 @@ keymap(
     { desc = "Jump"  }
 )
 
+-- neotree
+keymap("n", "<leader>te", "<cmd>Neotree<CR>", { desc = "Open Neotree" })
+
 -- telescope
 keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", { desc = "Open Telescope" })
 keymap("n", "<leader>F", "<cmd>Telescope git_files<CR>", { desc = "Open Telescope with files tracked by Git" })
