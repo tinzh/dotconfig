@@ -9,9 +9,6 @@ keymap("t", "kj", "<C-\\><C-n>", { desc = "Exit" })
 -- remove highlighting
 keymap("n", "<leader>nl", "<cmd>nohl<CR>", { desc = "Remove highlighting" })
 
-
-
-
 -- de-indent in insert mode
 keymap("i", "<S-Tab>", "", { desc = "De-indent" })
 
@@ -65,6 +62,12 @@ keymap("n", "<leader>gj", ui.nav_prev, { desc = "Go to previous Harpoon mark" })
 -- git
 keymap("n", "<leader>gh", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk" })
 keymap("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
+keymap("n", "co", "<cmd>GitConflictChooseOurs<CR>", { desc = "Merge conflict: choose original" })
+keymap("n", "ci", "<cmd>GitConflictChooseTheirs<CR>", { desc = "Merge conflict: choose incoming" })
+keymap("n", "cb", "<cmd>GitConflictChooseBoth<CR>", { desc = "Merge conflict: choose both" })
+keymap("n", "cn", "<cmd>GitConflictChooseNone<CR>", { desc = "Merge conflict: choose none" })
+keymap("n", "[x", "<cmd>GitConflictPrevConflict<CR>", { desc = "Merge conflict: go to previous" })
+keymap("n", "]x", "<cmd>GitConflictNextConflict<CR>", { desc = "Merge conflict: go to next" })
 
 -- open terminal below, or toggle focus to it
 local toggle_terminal = function()

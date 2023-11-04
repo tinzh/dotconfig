@@ -41,8 +41,11 @@ plugins = {
                 theme = "codedark",
             },
             sections = {
-                lualine_c = { { 'filename', path = 1 } },
+                lualine_c = { { "filename", path = 1 } },
                 lualine_x = {},
+            },
+            inactive_sections = {
+                lualine_c = { { "filename", path = 1} },
             },
         },
     },
@@ -187,16 +190,18 @@ plugins = {
         end,
     },
 
-    -- remote development
+    -- git conflicts
     {
-        "chipsenkbeil/distant.nvim",
-        branch = "v0.3",
+        "akinsho/git-conflict.nvim",
+        version = "*",
         opts = {
-            ["network.private"] = true,
+            default_mappings = false,
         },
-        config = function(_, opts)
-            require("distant"):setup(opts)
-        end,
+    },
+
+    -- indent guessing
+    {
+        "tpope/vim-sleuth",
     },
 }
 
