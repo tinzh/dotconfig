@@ -203,6 +203,13 @@ plugins = {
     {
         "tpope/vim-sleuth",
     },
+
+    -- indent guides
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {},
+    },
 }
 
 -- get lazy.nvim if not present

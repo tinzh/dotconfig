@@ -9,6 +9,7 @@ opt.tabstop = 8
 opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
+opt.smartindent = true
 
 -- keymap timeout
 opt.timeout = true
