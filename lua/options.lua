@@ -18,7 +18,7 @@ opt.timeoutlen = 300
 opt.wrap = false
 
 -- colors
-opt.termguicolors = false
+opt.termguicolors = true
 
 -- searching
 opt.ignorecase = true
