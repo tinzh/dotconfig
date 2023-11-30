@@ -13,8 +13,11 @@ keymap("n", "<leader>nl", "<cmd>nohl<CR>", { desc = "Remove highlighting" })
 keymap("i", "<S-Tab>", "", { desc = "De-indent" })
 
 -- insert line before/after
-keymap("n", "<CR>", function() vim.fn.append(vim.fn.line("."), "") end, { desc = "Add one line below" })
-keymap("n", "<leader><CR>", function() vim.fn.append(vim.fn.line(".")-1, "") end, { desc = "Add one line above" })
+keymap("n", "<CR>", function() vim.fn.append(vim.fn.line("."), "") vim.cmd("norm! j") end, { desc = "Add one line below" })
+keymap("n", "<leader><CR>", function() vim.fn.append(vim.fn.line(".")-1, "") vim.cmd("norm! j") end, { desc = "Add one line above" })
+
+-- easier dd
+keymap("n", "<leader>d", "dd", { desc = "Easier dd: delete one line" })
 
 -- comment with <C-/>
 keymap("i", "", "<Esc>gcci<C-f>", { remap = true, desc = "Comment current line" })
