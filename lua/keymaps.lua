@@ -3,7 +3,7 @@ local keymap = vim.keymap.set
 vim.g.mapleader = " "
 
 -- "kj" to escape
-keymap({"i", "v", "c"}, "kj", "<Esc>", { desc = "Exit" })
+keymap({"i", "c"}, "kj", "<Esc>", { desc = "Exit" })
 keymap("t", "kj", "<C-\\><C-n>", { desc = "Exit" })
 
 -- remove highlighting
@@ -12,12 +12,12 @@ keymap("n", "<leader>nl", "<cmd>nohl<CR>", { desc = "Remove highlighting" })
 -- de-indent in insert mode
 keymap("i", "<S-Tab>", "", { desc = "De-indent" })
 
--- insert line before/after
-keymap("n", "<CR>", function() vim.fn.append(vim.fn.line("."), "") vim.cmd("norm! j") end, { desc = "Add one line below" })
-keymap("n", "<leader><CR>", function() vim.fn.append(vim.fn.line(".")-1, "") vim.cmd("norm! j") end, { desc = "Add one line above" })
-
 -- easier dd
 keymap("n", "<leader>d", "dd", { desc = "Easier dd: delete one line" })
+
+-- insert line before/after
+keymap("n", "<CR>", "o<Esc>", { desc = "Add one line below" })
+keymap("n", "<leader><CR>", "O<Esc>", { desc = "Add one line above" })
 
 -- comment with <C-/>
 keymap("i", "", "<Esc>gcci<C-f>", { remap = true, desc = "Comment current line" })
