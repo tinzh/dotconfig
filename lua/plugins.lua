@@ -12,7 +12,7 @@ plugins = {
         "Mofiqul/vscode.nvim",
         priority = 1000,
         config = function()
-            require("vscode").load()
+           require("vscode").load()
         end,
     },
 
@@ -137,8 +137,28 @@ plugins = {
                     enable = true,
                     disable = { "lua" },
                 },
+                textobjects = {
+                    select = {
+                        enable = true,
+                        lookahead = true,
+                        keymaps = {
+                            ["af"] = "@function.outer",
+                            ["if"] = "@function.inner",
+                            ["ac"] = "@class.outer",
+                            ["ic"] = "@class.inner",
+                        },
+                    },
+                },
             })
         end,
+    },
+
+    -- treesitter objects
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter"
+        },
     },
 
     -- lsp
