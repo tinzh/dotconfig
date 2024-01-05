@@ -230,6 +230,11 @@ plugins = {
         main = "ibl",
         opts = {},
     },
+
+    -- whitespace highlighter
+    {
+        "ntpeters/vim-better-whitespace",
+    },
 }
 
 -- get lazy.nvim if not present

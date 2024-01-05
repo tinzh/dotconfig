@@ -35,14 +35,14 @@ keymap("n", "<leader>q", "<cmd>wa<CR><cmd>qa<CR>", { desc = "Save and quit all b
 
 -- better scrolling
 keymap(
-    "n", 
-    "<C-d>", 
+    "n",
+    "<C-d>",
     "<C-d>zz",
     { desc = "Jump"  }
 )
 keymap(
-    "n", 
-    "<C-u>", 
+    "n",
+    "<C-u>",
     "<C-u>zz",
     { desc = "Jump"  }
 )
@@ -109,7 +109,7 @@ keymap("n", "<leader>sj", "<C-w>s", { desc = "Split window horizontally below" }
 keymap("n", "<leader>sk", "<cmd>set nosplitbelow<CR><C-w>s<cmd>set splitbelow<CR>", { desc = "Split window horizontally above" })
 keymap("n", "<leader>;", "<C-w>q", { desc = "Close window", remap = true })
 keymap("n", "<leader>w", "<C-w>", { desc = "Easier <C-w>" })
-    
+
 -- tabs
 keymap("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 keymap("n", "<leader>t;", "<cmd>tabclose<CR>", { desc = "Close current tab" })

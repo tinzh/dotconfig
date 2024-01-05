@@ -32,7 +32,7 @@ local autocmd = vim.api.nvim_create_autocmd
 -- autocmd(
 --     "BufEnter",
 --     {
---         callback = function() 
+--         callback = function()
 --             if (string.find(vim.bo.buftype, "terminal")) then
 --                 vim.cmd("startinsert")
 --             end
