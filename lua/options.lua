@@ -48,3 +48,6 @@ opt.colorcolumn = "80"
 
 -- read file when changed outside of neovim
 opt.autoread = true
+
+-- fold markers
+opt.foldcolumn = "auto"

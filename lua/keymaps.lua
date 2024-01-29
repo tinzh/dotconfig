@@ -57,7 +57,7 @@ keymap("n", "<leader>F", "<cmd>Telescope git_files<CR>", { desc = "Open Telescop
 -- harpoon
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
-keymap("n", "<leader>h", ui.toggle_quick_menu, { desc = "Toggle Harpoon menu" })
+keymap("n", "<leader>hg", ui.toggle_quick_menu, { desc = "Toggle Harpoon menu" })
 keymap("n", "<leader>ha", function() mark.toggle_file(mark.get_current_index()) end, { desc = "Toggle file to Harpoon" })
 keymap("n", "<leader>gk", ui.nav_next, { desc = "Go to next Harpoon mark" })
 keymap("n", "<leader>gj", ui.nav_prev, { desc = "Go to previous Harpoon mark" })
@@ -94,8 +94,6 @@ local toggle_terminal = function()
     vim.cmd("wincmd s")
     vim.cmd("terminal")
     vim.cmd("wincmd 7-")
-    wd = vim.fn.getcwd()
-    -- vim.api.nvim_feedkeys("cd " .. wd .. "\nclear\ni", "m", false)
     vim.cmd("startinsert")
 end
 

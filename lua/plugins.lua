@@ -74,26 +74,6 @@ plugins = {
         end,
     },
 
-    -- -- save session by working directory
-    -- {
-    --     "rmagatti/auto-session",
-    --     opts = {
-    --         pre_save_cmds = {
-    --             function()
-    --                 current_tab = vim.fn.tabpagenr()
-    --                 vim.cmd("tabdo Neotree close")
-    --                 vim.cmd("Neotree close")
-    --                 vim.cmd.tabnext(current_tab)
-    --                 vim.cmd("Neotree close")
-    --             end
-    --         },
-    --         post_restore_cmds = { "Neotree show", function() restore_done = true end },
-    --     },
-    --     config = function(_, opts)
-    --         require("auto-session").setup(opts)
-    --     end,
-    -- },
-
     -- surround text
     {
         "kylechui/nvim-surround",
@@ -234,6 +214,29 @@ plugins = {
     -- whitespace highlighter
     {
         "ntpeters/vim-better-whitespace",
+    },
+
+    -- session saving
+    {
+        "rmagatti/auto-session",
+        opts = {
+            auto_session_enabled = true,
+            pre_save_cmds = {
+                function()
+                    current_tabpage = vim.fn.tabpagenr()
+                    vim.cmd.tabdo("Neotree close")
+                    vim.cmd.tabnext(current_tabpage)
+                end
+            },
+            post_restore_cmds = {
+                function()
+                    -- current_tabpage = vim.fn.tabpagenr()
+                    -- vim.cmd.tabdo("Neotree show")
+                    -- vim.cmd.tabnext(current_tabpage)
+                    -- vim.cmd("Neotree show")
+                end
+            },
+        },
     },
 }
 
