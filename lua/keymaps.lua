@@ -99,6 +99,7 @@ end
 
 keymap({ "n", "t" }, "<C-G>", toggle_terminal, { desc = "Toggle terminal" })
 keymap("n", "<leader>'", toggle_terminal, { desc = "Open terminal" })
+keymap("n", "<leader>tm", ":term<CR>i", { desc = "Open terminal" })
 
 -- windows and splitting
 keymap("n", "<leader>sh", "<cmd>set nosplitright<CR><C-w>v<cmd>set splitright<CR>", { desc = "Split window vertically left" })

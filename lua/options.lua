@@ -50,4 +50,4 @@ opt.colorcolumn = "80"
 opt.autoread = true
 
 -- fold markers
-opt.foldcolumn = "auto"
+opt.foldcolumn = "auto:9"
