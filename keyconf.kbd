@@ -1,0 +1,111 @@
+;;katana layout
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+
+(defvar
+  tap-timeout   1
+  hold-timeout  10000
+  tt $tap-timeout
+  ht $hold-timeout
+)
+
+(defalias
+    a (tap-hold-release $tt $ht a lmet)
+    r (tap-hold-release $tt $ht r lalt)
+    s (tap-hold-release $tt $ht s lctl)
+    t (tap-hold-release $tt $ht t lsft)
+    g (tap-hold-release $tt $ht g (layer-while-held nav))
+
+    n (tap-hold-release $tt $ht n rsft)
+    e (tap-hold-release $tt $ht e rctl)
+    i (tap-hold-release $tt $ht i lalt)
+    o (tap-hold-release $tt $ht o rmet)
+
+    spc (tap-hold-release $tt $ht spc (layer-while-held num))
+    ral (layer-while-held sym)
+    lal (layer-switch num)
+    rct (layer-switch normal)
+    to_base (layer-switch colemak)
+)
+
+(deflayer colemak
+  tab  q    w    f    p    b    [    j    l    u    y    ;    '    \
+  bspc @a   @r   @s   @t   @g   ]    m    @n   @e   @i   @o   ret
+  lsft x    c    d    v    z    /    k    h    ,    .    rsft
+  lctl lmet @lal           @spc           @ral rmet @rct
+)
+
+(deflayermap (nav)
+  a lmet
+  s lalt
+  d lctl
+  f lsft
+
+  j left
+  k down
+  l up
+  ; right
+  ' esc
+  , del
+)
+
+(defalias
+    ex (tap-hold-release $tt $ht S-1 lmet)
+    dh (tap-hold-release $tt $ht - lalt)
+    pl (tap-hold-release $tt $ht + lctl)
+    eq (tap-hold-release $tt $ht = lsft)
+    ht (tap-hold-release $tt $ht S-3 (layer-while-held nav))
+
+    cl (tap-hold-release $tt $ht S-; rsft)
+    lp (tap-hold-release $tt $ht S-9 rctl)
+    rp (tap-hold-release $tt $ht S-0 lalt)
+    qt (tap-hold-release $tt $ht S-/ rmet)
+)
+
+(deflayer sym
+  tab  '    S-,  S-.  S-'  .    [    S-7  S--  [    ]    S-5  '   \
+  caps @ex  @dh  @pl  @eq  @ht  ]    S-\  @cl  @lp  @rp  @qt  ret
+  S-6  /    S-8  \    `    z    /    S-`  S-4  S-[  S-]  S-2
+  lctl lmet lalt           @to_base       ralt rmet rctl
+)
+
+(defalias
+    1 (tap-hold-release $tt $ht 1 lmet)
+    2 (tap-hold-release $tt $ht 2 lalt)
+    3 (tap-hold-release $tt $ht 3 lctl)
+    4 (tap-hold-release $tt $ht 4 lsft)
+
+    7 (tap-hold-release $tt $ht 7 rsft)
+    8 (tap-hold-release $tt $ht 8 rctl)
+    9 (tap-hold-release $tt $ht 9 lalt)
+    0 (tap-hold-release $tt $ht 0 rmet)
+)
+
+(deflayermap (num)
+  a @1
+  s @2
+  d @3
+  f @4
+  g 5
+  j 6
+  k @7
+  l @8
+  ; @9
+  ' @0
+  lalt @to_base
+  spc @to_base
+)
+
+(deflayermap (normal)
+  rctl @to_base
+)
