@@ -44,7 +44,7 @@ opt.undofile = true
 opt.swapfile = false
 
 -- ruler
-opt.colorcolumn = "80"
+opt.colorcolumn = "160"
 
 -- read file when changed outside of neovim
 opt.autoread = true

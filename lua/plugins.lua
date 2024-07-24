@@ -63,6 +63,18 @@ plugins = {
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
+        config = function()
+            require("telescope").setup({
+                pickers = {
+                    find_files = {
+                        follow = true
+                    },
+                    git_files = {
+                        follow = true
+                    },
+                },
+            })
+        end,
         dependencies = { "nvim-lua/plenary.nvim" },
     },
 
@@ -237,6 +249,14 @@ plugins = {
                 end
             },
         },
+    },
+
+    -- motions
+    {
+        "ggandor/leap.nvim",
+        config = function()
+            require("leap").create_default_mappings()
+        end,
     },
 }
 

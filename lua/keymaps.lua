@@ -25,7 +25,7 @@ keymap("n", "", "gcc", { remap = true, desc = "Comment current line"})
 keymap("v", "", "gc", { remap = true, desc = "Comment block" })
 
 -- surround with s
-keymap("v", "s", "S", { remap = true, desc = "Surround with s"})
+keymap("v", "ys", "S", { remap = true, desc = "Surround with s"})
 
 -- replace current word
 keymap("n", "<leader>r", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]], { desc = "Replace current word" })
@@ -59,8 +59,8 @@ local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 keymap("n", "<leader>hg", ui.toggle_quick_menu, { desc = "Toggle Harpoon menu" })
 keymap("n", "<leader>ha", function() mark.toggle_file(mark.get_current_index()) end, { desc = "Toggle file to Harpoon" })
-keymap("n", "<leader>gk", ui.nav_next, { desc = "Go to next Harpoon mark" })
-keymap("n", "<leader>gj", ui.nav_prev, { desc = "Go to previous Harpoon mark" })
+keymap("n", "<leader>ge", ui.nav_next, { desc = "Go to next Harpoon mark" })
+keymap("n", "<leader>gn", ui.nav_prev, { desc = "Go to previous Harpoon mark" })
 
 -- git
 keymap("n", "<leader>gh", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk" })
@@ -97,21 +97,25 @@ local toggle_terminal = function()
     vim.cmd("startinsert")
 end
 
-keymap({ "n", "t" }, "<C-G>", toggle_terminal, { desc = "Toggle terminal" })
+keymap({ "n", "t" }, "<C-!>", toggle_terminal, { desc = "Toggle terminal" })
 keymap("n", "<leader>'", toggle_terminal, { desc = "Open terminal" })
-keymap("n", "<leader>tm", ":term<CR>i", { desc = "Open terminal" })
+keymap("n", "<leader>tr", ":term<CR>i", { desc = "Open terminal" })
 
 -- windows and splitting
-keymap("n", "<leader>sh", "<cmd>set nosplitright<CR><C-w>v<cmd>set splitright<CR>", { desc = "Split window vertically left" })
-keymap("n", "<leader>sl", "<C-w>v", { desc = "Split window vertically right" })
-keymap("n", "<leader>sj", "<C-w>s", { desc = "Split window horizontally below" })
-keymap("n", "<leader>sk", "<cmd>set nosplitbelow<CR><C-w>s<cmd>set splitbelow<CR>", { desc = "Split window horizontally above" })
+keymap("n", "<leader>sm", "<cmd>set nosplitright<CR><C-w>v<cmd>set splitright<CR>", { desc = "Split window vertically left" })
+keymap("n", "<leader>si", "<C-w>v", { desc = "Split window vertically right" })
+keymap("n", "<leader>sn", "<C-w>s", { desc = "Split window horizontally below" })
+keymap("n", "<leader>se", "<cmd>set nosplitbelow<CR><C-w>s<cmd>set splitbelow<CR>", { desc = "Split window horizontally above" })
 keymap("n", "<leader>;", "<C-w>q", { desc = "Close window", remap = true })
 keymap("n", "<leader>w", "<C-w>", { desc = "Easier <C-w>" })
+keymap("n", "<leader>wm", "<C-w>h", { desc = "Easier <C-w>h" })
+keymap("n", "<leader>wn", "<C-w>j", { desc = "Easier <C-w>j" })
+keymap("n", "<leader>we", "<C-w>k", { desc = "Easier <C-w>k" })
+keymap("n", "<leader>wi", "<C-w>l", { desc = "Easier <C-w>l" })
 
 -- tabs
 keymap("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 keymap("n", "<leader>t;", "<cmd>tabclose<CR>", { desc = "Close current tab" })
-keymap("n", "<leader>tj", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
-keymap("n", "<leader>tk", "<cmd>tabn<CR>", { desc = "Go to next tab" })
+keymap("n", "<leader>tm", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
+keymap("n", "<leader>ti", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap("n", "<leader>tO", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
