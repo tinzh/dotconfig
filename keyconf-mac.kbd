@@ -1,9 +1,5 @@
 ;;katana layout
 
-(defcfg
-  process-unmapped-keys yes
-)
-
 (defsrc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -20,75 +16,77 @@
 )
 
 (defalias
-    a (tap-hold-release $tt $ht a lmet)
+    a (tap-hold-release $tt $ht a lctl)
     r (tap-hold-release $tt $ht r lalt)
-    s (tap-hold-release $tt $ht s lctl)
+    s (tap-hold-release $tt $ht s lmet)
     t (tap-hold-release $tt $ht t lsft)
     g (tap-hold-release $tt $ht g (layer-while-held nav))
 
     n (tap-hold-release $tt $ht n rsft)
-    e (tap-hold-release $tt $ht e rctl)
-    i (tap-hold-release $tt $ht i lalt)
-    o (tap-hold-release $tt $ht o rmet)
+    e (tap-hold-release $tt $ht e rmet)
+    i (tap-hold-release $tt $ht i ralt)
+    o (tap-hold-release $tt $ht o rctl)
 
     spc (tap-hold-release $tt $ht spc (layer-while-held num))
-    ral (layer-while-held sym)
-    lal (layer-switch num)
-    rct (layer-switch normal)
+    rme (layer-while-held sym)
+    lme (layer-while-held nav)
+    ral (layer-switch normal)
     to_base (layer-switch colemak)
 )
 
 (deflayer colemak
   tab  q    w    f    p    b    [    j    l    u    y    ;    '    \
   bspc @a   @r   @s   @t   @g   ]    m    @n   @e   @i   @o   ret
-  lsft x    c    d    v    z    /    k    h    ,    .    rsft
-  lctl lmet @lal           @spc           @ral rmet @rct
+  lsft x    c    d    v    z    /    k    h    ,    .    /
+  lctl @lme lalt           @spc           @ral @rme rctl
 )
 
 (deflayermap (nav)
-  a lmet
+  a lctl
   s lalt
-  d lctl
+  d lmet
   f lsft
 
   j left
   k down
   l up
+  o tab
+  [ S-;
   ; right
   ' esc
   , del
 )
 
 (defalias
-    ex (tap-hold-release $tt $ht S-1 lmet)
+    ex (tap-hold-release $tt $ht S-1 lctl)
     dh (tap-hold-release $tt $ht - lalt)
-    pl (tap-hold-release $tt $ht + lctl)
+    pl (tap-hold-release $tt $ht + lmet)
     eq (tap-hold-release $tt $ht = lsft)
     ht (tap-hold-release $tt $ht S-3 (layer-while-held nav))
 
     cl (tap-hold-release $tt $ht S-; rsft)
-    lp (tap-hold-release $tt $ht S-9 rctl)
+    lp (tap-hold-release $tt $ht S-9 rmet)
     rp (tap-hold-release $tt $ht S-0 lalt)
-    qt (tap-hold-release $tt $ht S-/ rmet)
+    qt (tap-hold-release $tt $ht S-/ rctl)
 )
 
 (deflayer sym
   tab  '    S-,  S-.  S-'  .    [    S-7  S--  [    ]    S-5  '   \
-  caps @ex  @dh  @pl  @eq  @ht  ]    S-\  @cl  @lp  @rp  @qt  ret
+  bspc @ex  @dh  @pl  @eq  @ht  ]    S-\  @cl  @lp  @rp  @qt  ret
   S-6  /    S-8  \    `    z    /    S-`  S-4  S-[  S-]  S-2
   lctl lmet lalt           @to_base       ralt rmet rctl
 )
 
 (defalias
-    1 (tap-hold-release $tt $ht 1 lmet)
+    1 (tap-hold-release $tt $ht 1 lctl)
     2 (tap-hold-release $tt $ht 2 lalt)
-    3 (tap-hold-release $tt $ht 3 lctl)
+    3 (tap-hold-release $tt $ht 3 lmet)
     4 (tap-hold-release $tt $ht 4 lsft)
 
     7 (tap-hold-release $tt $ht 7 rsft)
-    8 (tap-hold-release $tt $ht 8 rctl)
+    8 (tap-hold-release $tt $ht 8 rmet)
     9 (tap-hold-release $tt $ht 9 lalt)
-    0 (tap-hold-release $tt $ht 0 rmet)
+    0 (tap-hold-release $tt $ht 0 rctl)
 )
 
 (deflayermap (num)
@@ -107,5 +105,5 @@
 )
 
 (deflayermap (normal)
-  rctl @to_base
+  ralt @to_base
 )
