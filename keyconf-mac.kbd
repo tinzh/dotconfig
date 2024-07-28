@@ -37,7 +37,7 @@
 (deflayer colemak
   tab  q    w    f    p    b    [    j    l    u    y    ;    '    \
   bspc @a   @r   @s   @t   @g   ]    m    @n   @e   @i   @o   ret
-  lsft x    c    d    v    z    /    k    h    ,    .    /
+  z    x    c    d    v    z    /    k    h    ,    .    /
   lctl @lme lalt           @spc           @ral @rme rctl
 )
 
@@ -46,6 +46,8 @@
   s lalt
   d lmet
   f lsft
+  lmet lsft
+  g lsft
 
   j left
   k down

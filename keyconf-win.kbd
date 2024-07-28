@@ -29,7 +29,7 @@
 
     spc (tap-hold-release $tt $ht spc (layer-while-held num))
     ral (layer-while-held sym)
-    lal (layer-switch num)
+    lal (layer-while-held nav)
     rct (layer-switch normal)
     to_base (layer-switch colemak)
 )
@@ -37,7 +37,7 @@
 (deflayer colemak
   tab  q    w    f    p    b    [    j    l    u    y    ;    '    \
   bspc @a   @r   @s   @t   @g   ]    m    @n   @e   @i   @o   ret
-  lsft x    c    d    v    z    /    k    h    ,    .    /
+  z    x    c    d    v    z    /    k    h    ,    .    /
   lctl lmet @lal           @spc           @ral rmet @rct
 )
 
@@ -46,6 +46,8 @@
   s lalt
   d lmet
   f lsft
+  lalt lsft
+  g lsft
 
   j left
   k down
