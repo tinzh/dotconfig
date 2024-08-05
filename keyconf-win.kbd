@@ -30,7 +30,6 @@
     spc (tap-hold-release $tt $ht spc (layer-while-held num))
     ral (layer-while-held sym)
     lal (layer-while-held nav)
-    rct (layer-switch qwerty)
     to_base (layer-switch colemak)
 )
 
@@ -65,7 +64,7 @@
   tab  '    S-,  S-.  S-'  .         S-4  S--  [    ]    S-5  '
   bspc @ex  @dh  @pl  @eq  @ht       S-7  @cl  @lp  @rp  @qt  ret
        S-6  /    S-8  \    `         S-\  S-`  S-[  S-]  S-2
-  lctl lmet lalt                @to_base  ralt rmet rctl
+  _    _    _                   spc       _    _    _
 )
 
 (defalias
@@ -84,7 +83,7 @@
   _    _    _    _    _    _         _    _    _    _    _    _
   _    @1   @2   @3   @4   5         6    @7   @8   @9   @0   _
        _    _    _    _    _         _    _    _    _    _
-  _    _    _                   @to_base  _    _    _
+  _    _    _                   spc       _    _    _
 )
 
 (deflayermap (qwerty)
