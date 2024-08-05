@@ -1,10 +1,10 @@
 ;;katana layout
 
 (defsrc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rmet rctl
+  tab  q    w    e    r    t         u    i    o    p    [    ]
+  caps a    s    d    f    g         j    k    l    ;    '    ret
+       lsft z    x    c    v         m    ,    .    /    rsft
+  lctl lmet lalt                spc       ralt rmet rctl
 )
 
 
@@ -30,33 +30,22 @@
     spc (tap-hold-release $tt $ht spc (layer-while-held num))
     ral (layer-while-held sym)
     lal (layer-while-held nav)
-    rct (layer-switch normal)
+    rct (layer-switch qwerty)
     to_base (layer-switch colemak)
 )
 
 (deflayer colemak
-  tab  q    w    f    p    b    [    j    l    u    y    ;    '    \
-  bspc @a   @r   @s   @t   @g   ]    m    @n   @e   @i   @o   ret
-  z    x    c    d    v    z    /    k    h    ,    .    /
-  lctl lmet @lal           @spc           @ral rmet @rct
+  tab  q    w    f    p    b         j    l    u    y    ;    '
+  bspc @a   @r   @s   @t   @g        m    @n   @e   @i   @o   ret
+       z    x    c    d    v         k    h    ,    .    /
+  lctl lmet @lal                @spc      @ral rmet @rct
 )
 
-(deflayermap (nav)
-  a lctl
-  s lalt
-  d lmet
-  f lsft
-  lalt lsft
-  g lsft
-
-  j left
-  k down
-  l up
-  o tab
-  [ S-;
-  ; right
-  ' esc
-  , del
+(deflayer nav
+  _    _    _    _    _    _         _    _    tab  _     S-;  _
+  _    lctl lalt lmet lsft lsft      left down up   right esc  _
+       _    _    _    _    _         _    _    _    _     _
+  _    _    lsft                spc       @ral _    _
 )
 
 (defalias
@@ -73,10 +62,10 @@
 )
 
 (deflayer sym
-  tab  '    S-,  S-.  S-'  .    [    S-7  S--  [    ]    S-5  '   \
-  bspc @ex  @dh  @pl  @eq  @ht  ]    S-\  @cl  @lp  @rp  @qt  ret
-  S-6  /    S-8  \    `    z    /    S-`  S-4  S-[  S-]  S-2
-  lctl lmet lalt           @to_base       ralt rmet rctl
+  tab  '    S-,  S-.  S-'  .         S-4  S--  [    ]    S-5  '
+  bspc @ex  @dh  @pl  @eq  @ht       S-7  @cl  @lp  @rp  @qt  ret
+       S-6  /    S-8  \    `         S-\  S-`  S-[  S-]  S-2
+  lctl lmet lalt                @to_base  ralt rmet rctl
 )
 
 (defalias
@@ -91,21 +80,13 @@
     0 (tap-hold-release $tt $ht 0 rctl)
 )
 
-(deflayermap (num)
-  a @1
-  s @2
-  d @3
-  f @4
-  g 5
-  j 6
-  k @7
-  l @8
-  ; @9
-  ' @0
-  lalt @to_base
-  spc @to_base
+(deflayer num
+  _    _    _    _    _    _         _    _    _    _    _    _
+  _    @1   @2   @3   @4   5         6    @7   @8   @9   @0   _
+       _    _    _    _    _         _    _    _    _    _
+  _    _    _                   @to_base  _    _    _
 )
 
-(deflayermap (normal)
+(deflayermap (qwerty)
   rctl @to_base
 )
