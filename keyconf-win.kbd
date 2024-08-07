@@ -41,9 +41,9 @@
 )
 
 (deflayer nav
-  _    _    _    _    _    _         _    _    tab  _     S-;  _
+  _    _    _    _    _    _         _    _    tab  caps  S-;  _
   _    lctl lalt lmet lsft lsft      left down up   right esc  _
-       _    _    _    _    _         _    _    _    _     _
+       _    _    _    _    _         _    pgdn pgup _     end
   _    _    lsft                spc       @ral _    _
 )
 

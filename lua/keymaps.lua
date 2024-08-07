@@ -3,8 +3,8 @@ local keymap = vim.keymap.set
 vim.g.mapleader = " "
 
 -- "kj" to escape
-keymap({"i", "c"}, "kj", "<Esc>", { desc = "Exit" })
-keymap("t", "kj", "<C-\\><C-n>", { desc = "Exit" })
+-- keymap({"i", "c"}, "kj", "<Esc>", { desc = "Exit" })
+-- keymap("t", "kj", "<C-\\><C-n>", { desc = "Exit" })
 
 -- remove highlighting
 keymap("n", "<leader>nl", "<cmd>nohl<CR>", { desc = "Remove highlighting" })
@@ -21,11 +21,11 @@ keymap("n", "<leader><CR>", "O<Esc>", { desc = "Add one line above" })
 
 -- comment with <C-/>
 keymap("i", "", "<Esc>gcci<C-f>", { remap = true, desc = "Comment current line" })
-keymap("n", "", "gcc", { remap = true, desc = "Comment current line"})
+keymap("n", "", "gcc", { remap = true, desc = "Comment current line" })
 keymap("v", "", "gc", { remap = true, desc = "Comment block" })
 
 -- surround with s
-keymap("v", "ys", "S", { remap = true, desc = "Surround with s"})
+keymap("v", "ys", "S", { remap = true, desc = "Surround with s" })
 
 -- replace current word
 keymap("n", "<leader>r", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]], { desc = "Replace current word" })
@@ -47,12 +47,26 @@ keymap(
     { desc = "Jump"  }
 )
 
+-- jumplist
+keymap("n", "<leader>cj", "<cmd>clearjumps<CR>", { desc = "Clear jumplist" })
+
+-- quickfix jumping
+keymap("n", "<leader>ce", "<cmd>cn<CR>", { desc = "Go to next quickfix" })
+keymap("n", "<leader>cn", "<cmd>cp<CR>", { desc = "Go to prev quickfix" })
+keymap("n", "<leader>cq", "<cmd>ccl<CR>", { desc = "Close quickfix window" })
+
 -- neotree
-keymap("n", "<leader>te", "<cmd>Neotree<CR>", { desc = "Open Neotree" })
+keymap("n", "<leader>ti", "<cmd>Neotree<CR>", { desc = "Open Neotree" })
 
 -- telescope
 keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", { desc = "Open Telescope" })
 keymap("n", "<leader>F", "<cmd>Telescope git_files<CR>", { desc = "Open Telescope with files tracked by Git" })
+keymap("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Search for a string with Telescope" })
+keymap("n", "<leader>?", "<cmd>Telescope grep_string<CR>", { desc = "Search for current string with Telescope" })
+keymap("n", "<leader>.", "<cmd>Telescope grep_string<CR>", { desc = "Search for current string with Telescope" })
+
+-- .h/.cpp file switching
+keymap("n", "<leader>u", "<cmd>ClangdSwitchSourceHeader<CR>", { desc = "Switch between .h/.cpp files" })
 
 -- harpoon
 local mark = require("harpoon.mark")
@@ -98,8 +112,8 @@ local toggle_terminal = function()
 end
 
 keymap({ "n", "t" }, "<C-!>", toggle_terminal, { desc = "Toggle terminal" })
-keymap("n", "<leader>'", toggle_terminal, { desc = "Open terminal" })
-keymap("n", "<leader>tr", ":term<CR>i", { desc = "Open terminal" })
+keymap("t", "<C-a>",  "<C-\\><C-n>", { desc = "Escape in terminal" })
+keymap("n", "<leader>tm", ":term<CR>i", { desc = "Open terminal in current window" })
 
 -- windows and splitting
 keymap("n", "<leader>sm", "<cmd>set nosplitright<CR><C-w>v<cmd>set splitright<CR>", { desc = "Split window vertically left" })
@@ -116,6 +130,6 @@ keymap("n", "<leader>wi", "<C-w>l", { desc = "Easier <C-w>l" })
 -- tabs
 keymap("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 keymap("n", "<leader>t;", "<cmd>tabclose<CR>", { desc = "Close current tab" })
-keymap("n", "<leader>tm", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
-keymap("n", "<leader>ti", "<cmd>tabn<CR>", { desc = "Go to next tab" })
+keymap("n", "<leader>tn", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
+keymap("n", "<leader>te", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap("n", "<leader>tO", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })

@@ -10,3 +10,13 @@ autocmd(
         desc = "Disable trailing whitespace highlighting for terminal windows",
     }
 )
+
+autocmd(
+    "BufReadPost",
+    {
+        pattern = "quickfix",
+        callback = function()
+            vim.keymap.set("n", "<CR>", "<CR>", { buffer = true })
+        end,
+    }
+)

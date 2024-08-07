@@ -64,7 +64,13 @@ plugins = {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
         config = function()
+            rg_args = { unpack(require("telescope.config").values.vimgrep_arguments) }
+            table.insert(rg_args, "-L")
             require("telescope").setup({
+                defaults = {
+                    vimgrep_arguments = rg_args
+
+                },
                 pickers = {
                     find_files = {
                         follow = true
@@ -74,6 +80,7 @@ plugins = {
                     },
                 },
             })
+
         end,
         dependencies = { "nvim-lua/plenary.nvim" },
     },
@@ -112,6 +119,13 @@ plugins = {
     -- file finding
     {
         "theprimeagen/harpoon",
+        config = function()
+            require("harpoon").setup({
+                menu = {
+                    width = vim.api.nvim_win_get_width(0) / 2
+                }
+            })
+        end,
         dependencies = {
             "nvim-lua/plenary.nvim"
         },
@@ -256,6 +270,7 @@ plugins = {
         "ggandor/leap.nvim",
         config = function()
             require("leap").create_default_mappings()
+            require("leap").opts.case_sensitive = true
         end,
     },
 }
