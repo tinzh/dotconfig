@@ -26,6 +26,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 ```
 
 ### zsh
+
 ```
 rm .zshrc
 ln -s ~/.config/.zshrc .zshrc
@@ -59,3 +60,8 @@ mv nvim.appimage nvim
 popd
 ```
 
+### On CentOS 7
+
+```
+conda install zsh git=2.46.0 tmux gcc
+```
