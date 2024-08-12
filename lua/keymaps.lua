@@ -112,7 +112,7 @@ local toggle_terminal = function()
 end
 
 keymap({ "n", "t" }, "<C-!>", toggle_terminal, { desc = "Toggle terminal" })
-keymap("t", "<C-a>",  "<C-\\><C-n>", { desc = "Escape in terminal" })
+keymap("t", "<Esc>",  "<C-\\><C-n>", { desc = "Escape in terminal" })
 keymap("n", "<leader>tm", ":term<CR>i", { desc = "Open terminal in current window" })
 
 -- windows and splitting

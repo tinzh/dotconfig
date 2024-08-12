@@ -174,10 +174,11 @@ plugins = {
         branch = "v3.x",
         config = function()
             local lsp_zero = require("lsp-zero")
-
             lsp_zero.on_attach(
                 function(_, bufnr)
                     lsp_zero.default_keymaps({ buffer = bufnr })
+                    vim.keymap.set("n", "ge", vim.diagnostic.open_float, { buffer = bufnr, desc = "View whole error" })
+
                 end
             )
 
@@ -212,7 +213,9 @@ plugins = {
     {
         "pocco81/auto-save.nvim",
         config = function()
-            require("auto-save").setup()
+            require("auto-save").setup({
+                debounce_delay = 10000,
+            })
         end,
     },
 
