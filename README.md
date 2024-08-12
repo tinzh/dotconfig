@@ -62,6 +62,8 @@ popd
 
 ### On CentOS 7
 
+Get nvim from https://github.com/neovim/neovim-releases/releases
+
 ```
 conda install zsh git=2.46.0 tmux gcc
 ```
