@@ -178,7 +178,9 @@ plugins = {
                 function(_, bufnr)
                     lsp_zero.default_keymaps({ buffer = bufnr })
                     vim.keymap.set("n", "ge", vim.diagnostic.open_float, { buffer = bufnr, desc = "View whole error" })
-
+                    vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Go to previous error" })
+                    vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Go to next error" })
+                    vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename all references" })
                 end
             )
 
@@ -273,7 +275,7 @@ plugins = {
         "ggandor/leap.nvim",
         config = function()
             require("leap").create_default_mappings()
-            require("leap").opts.case_sensitive = true
+            -- require("leap").opts.case_sensitive = true
         end,
     },
 }
