@@ -90,7 +90,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 alias gsu='git submodule update --init --recursive'
-alias gpsupf='git push --set-upstream'
+alias gpsupf='git push --set-upstream fork'
 
 # User configuration
 

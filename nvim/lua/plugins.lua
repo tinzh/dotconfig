@@ -181,6 +181,7 @@ plugins = {
                     vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Go to previous error" })
                     vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Go to next error" })
                     vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename all references" })
+                    vim.keymap.set("n", "k", vim.lsp.buf.hover, { buffer = bufnr, desc = "Display hover information" })
                 end
             )
 
