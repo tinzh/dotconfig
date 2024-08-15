@@ -176,7 +176,7 @@ plugins = {
             local lsp_zero = require("lsp-zero")
             lsp_zero.on_attach(
                 function(_, bufnr)
-                    lsp_zero.default_keymaps({ buffer = bufnr })
+                    lsp_zero.default_keymaps({ buffer = bufnr, exclude = {"K", "[d", "]d"} })
                     vim.keymap.set("n", "ge", vim.diagnostic.open_float, { buffer = bufnr, desc = "View whole error" })
                     vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Go to previous error" })
                     vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Go to next error" })
@@ -275,8 +275,12 @@ plugins = {
     {
         "ggandor/leap.nvim",
         config = function()
-            require("leap").create_default_mappings()
-            -- require("leap").opts.case_sensitive = true
+            require("leap").setup({
+                -- unused by me: ljKQXZ!-+=^*\`_()~{}&|HML
+                safe_labels = "stnhlfu/jSTNHMGLFUZQXJ!-+=()?\\~_*'~{}`", -- bBeEwW?
+                labels = "arstneiodhvkgmplfuc,wyx.z/q;ARSTNEIODHVKGMPLFUC,WYZQ!-+=:()?\\~`|#&\"_>[*{<]/}^@'%"
+                -- TODO: labels = ""
+            })
         end,
     },
 }

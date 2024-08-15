@@ -47,6 +47,15 @@ keymap(
     { desc = "Jump"  }
 )
 
+-- mark
+keymap("n", "h", "'", {desc = "Jump to mark"})
+
+-- leap
+keymap("n", "s", "<Plug>(leap)", { desc = "Leap" })
+keymap("n", "S", "<Plug>(leap-from-window)", { desc = "Leap from window" })
+keymap({"x", "o"}, "s", "<Plug>(leap-forward)", { desc = "Leap forward" })
+keymap({"x", "o"}, "S", "<Plug>(leap-backward)", { desc = "Leap backward" })
+
 -- jumplist
 keymap("n", "<leader>cj", "<cmd>clearjumps<CR>", { desc = "Clear jumplist" })
 
