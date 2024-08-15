@@ -1,0 +1,20 @@
+grid_keys: u y e i
+grid_exit: ;
+
+left: j
+down: l
+up: u
+right: y
+
+scroll_down: ,
+scroll_up: .
+
+buttons: n / o
+drag: m
+
+hint_activation_key: C-A-h
+grid_activation_key: C-A-k
+activation_key: C-A-n
+
+hint: h
+grid: k
