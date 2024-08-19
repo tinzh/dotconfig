@@ -68,5 +68,5 @@ popd
 Get nvim from https://github.com/neovim/neovim-releases/releases
 
 ```
-conda install zsh "git>=2.23.0" tmux gcc
+conda install zsh "git>=2.23.0" tmux gcc ripgrep
 ```
