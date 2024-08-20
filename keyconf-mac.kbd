@@ -36,7 +36,7 @@
 
 (deflayer colemak
   tab  q    w    f    p    b         j    l    u    y    ;    '
-  bspc @a   @r   @s   @t   @g        m    @n   @e   @i   @o   ret
+  bspc @a   @r   @s   @t   g         m    @n   @e   @i   @o   ret
        z    x    c    d    v         k    h    ,    .    /
   lctl lmet @lal                @spc      @ral rmet @rct
 )
@@ -45,7 +45,7 @@
   _    _    _    _    _    _         _    _    tab  _     S-;  _
   _    lctl lalt lmet lsft lsft      left down up   right esc  _
        _    _    _    _    _         _    _    _    _     _
-  _    _    lsft                spc       @ral _    _
+  _    _    lsft                spc       ret  _    _
 )
 
 (defalias
