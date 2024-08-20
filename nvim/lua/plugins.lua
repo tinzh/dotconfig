@@ -28,6 +28,10 @@ plugins = {
         opts = {
             window = {
                 width = 30,
+                mappings = {
+                    ["s"] = "noop",
+                    ["S"] = "noop",
+                },
             },
         },
     },
