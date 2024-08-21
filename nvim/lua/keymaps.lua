@@ -47,8 +47,9 @@ keymap(
     { desc = "Jump"  }
 )
 
--- mark
-keymap("n", "h", "'", {desc = "Jump to mark"})
+-- native remaps
+keymap("n", "h", "'", { desc = "Jump to mark" })
+keymap("n", "l", "@", { desc = "Run macro" })
 
 -- leap
 keymap("n", "s", "<Plug>(leap)", { desc = "Leap" })
@@ -86,8 +87,9 @@ keymap("n", "<leader>ge", ui.nav_next, { desc = "Go to next Harpoon mark" })
 keymap("n", "<leader>gn", ui.nav_prev, { desc = "Go to previous Harpoon mark" })
 
 -- git
-keymap("n", "<leader>gh", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk" })
-keymap("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
+keymap("n", "gh", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk" })
+keymap("n", "gt", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
+keymap("n", "gm", "<cmd>BlameToggle virtual<CR>", { desc = "Toggle Git blame" })
 keymap("n", "co", "<cmd>GitConflictChooseOurs<CR>", { desc = "Merge conflict: choose original" })
 keymap("n", "ch", "<cmd>GitConflictChooseTheirs<CR>", { desc = "Merge conflict: choose theirs" })
 keymap("n", "cb", "<cmd>GitConflictChooseBoth<CR>", { desc = "Merge conflict: choose both" })

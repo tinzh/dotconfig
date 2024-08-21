@@ -31,6 +31,7 @@ plugins = {
                 mappings = {
                     ["s"] = "noop",
                     ["S"] = "noop",
+                    ["z"] = "noop",
                 },
             },
         },
@@ -180,7 +181,7 @@ plugins = {
             local lsp_zero = require("lsp-zero")
             lsp_zero.on_attach(
                 function(_, bufnr)
-                    lsp_zero.default_keymaps({ buffer = bufnr, exclude = {"K", "[d", "]d"} })
+                    lsp_zero.default_keymaps({ buffer = bufnr, exclude = {"K", "[d", "]d", "gr"} })
                     vim.keymap.set("n", "ge", vim.diagnostic.open_float, { buffer = bufnr, desc = "View whole error" })
                     vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Go to previous error" })
                     vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Go to next error" })
@@ -286,6 +287,14 @@ plugins = {
                 -- TODO: labels = ""
             })
         end,
+    },
+
+    -- git blame
+    {
+        "FabijanZulj/blame.nvim",
+        config = function()
+            require("blame").setup()
+        end
     },
 }
 
