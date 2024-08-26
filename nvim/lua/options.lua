@@ -13,7 +13,7 @@ opt.smartindent = true
 
 -- keymap timeout
 opt.timeout = true
-opt.timeoutlen = 300
+opt.timeoutlen = 600
 
 -- line wrapping
 opt.wrap = false
