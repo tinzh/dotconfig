@@ -24,9 +24,6 @@ keymap("i", "", "<Esc>gcci<C-f>", { remap = true, desc = "Comment current line"
 keymap("n", "", "gcc", { remap = true, desc = "Comment current line" })
 keymap("v", "", "gc", { remap = true, desc = "Comment block" })
 
--- surround with s
-keymap("v", "ys", "S", { remap = true, desc = "Surround with s" })
-
 -- replace current word
 keymap("n", "<leader>r", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]], { desc = "Replace current word" })
 
@@ -52,10 +49,10 @@ keymap("n", "h", "'", { desc = "Jump to mark" })
 keymap("n", "l", "@", { desc = "Run macro" })
 
 -- leap
-keymap("n", "s", "<Plug>(leap)", { desc = "Leap" })
-keymap("n", "S", "<Plug>(leap-from-window)", { desc = "Leap from window" })
-keymap({"x", "o"}, "s", "<Plug>(leap-forward)", { desc = "Leap forward" })
-keymap({"x", "o"}, "S", "<Plug>(leap-backward)", { desc = "Leap backward" })
+keymap({"n", "x", "o"}, "s", "<Plug>(leap)", { desc = "Leap" })
+keymap({"n", "x", "o"}, "S", "<Plug>(leap-from-window)", { desc = "Leap from window" })
+-- keymap({"x", "o"}, "s", "<Plug>(leap-forward)", { desc = "Leap forward" })
+-- keymap({"x", "o"}, "S", "<Plug>(leap-backward)", { desc = "Leap backward" })
 
 -- jumplist
 keymap("n", "<leader>cj", "<cmd>clearjumps<CR>", { desc = "Clear jumplist" })

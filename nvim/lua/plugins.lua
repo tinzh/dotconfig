@@ -104,7 +104,19 @@ plugins = {
         version = "*",
         event = "VeryLazy",
         config = function()
-            require("nvim-surround").setup()
+            require("nvim-surround").setup({
+                keymaps = {
+                    normal = "j",
+                    normal_cur = "jj",
+                    normal_line = "J",
+                    normal_cur_line = "JJ",
+                    visual = "j",
+                    visual_line = "J",
+                    delete = "dj",
+                    change = "cj",
+                    change_line = "cJ",
+                }
+            })
         end,
     },
 
@@ -281,8 +293,8 @@ plugins = {
         "ggandor/leap.nvim",
         config = function()
             require("leap").setup({
-                -- unused by me: ljKQXZ!-+=^*\`_()~{}&|HML
-                safe_labels = "stnhlfu/jSTNHMGLFUZQXJ!-+=()?\\~_*'~{}`", -- bBeEwW?
+                -- unused by me: jKQXZ!-+=^*\`_()~{}&|HML
+                safe_labels = "stnhfu/jSTNHMGLFUZQXJ!-+=()?\\~_*'~{}`", -- bBeEwW?
                 labels = "arstneiodhvkgmplfuc,wyx.z/q;ARSTNEIODHVKGMPLFUC,WYZQ!-+=:()?\\~`|#&\"_>[*{<]/}^@'%"
                 -- TODO: labels = ""
             })
