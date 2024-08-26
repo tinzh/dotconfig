@@ -91,6 +91,7 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+unalias g
 unalias gsu
 unalias gpsupf
 alias gsu='git submodule update --init --recursive'
