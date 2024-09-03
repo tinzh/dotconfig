@@ -1,10 +1,10 @@
 grid_keys: u y e i
 grid_exit: ;
 
-left: j
-down: l
-up: u
-right: y
+left: left
+down: down
+up: up
+right: right
 
 scroll_down: ,
 scroll_up: .

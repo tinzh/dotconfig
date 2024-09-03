@@ -108,8 +108,8 @@ plugins = {
                 keymaps = {
                     normal = "j",
                     normal_cur = "jj",
-                    normal_line = "J",
-                    normal_cur_line = "JJ",
+                    normal_line = "jJ",
+                    normal_cur_line = "jJJ",
                     visual = "j",
                     visual_line = "J",
                     delete = "dj",
@@ -307,6 +307,13 @@ plugins = {
         config = function()
             require("blame").setup()
         end
+    },
+
+    -- closing characters
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = true,
     },
 }
 
