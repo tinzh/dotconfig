@@ -51,6 +51,12 @@ mv nvim.appimage nvim
 popd
 ```
 
+### Tmux
+
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
 ### On CentOS 7
 
 Get nvim from https://github.com/neovim/neovim-releases/releases
