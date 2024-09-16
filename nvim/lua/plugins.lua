@@ -12,8 +12,69 @@ plugins = {
         "Mofiqul/vscode.nvim",
         priority = 1000,
         config = function()
-           require("vscode").load()
+            vim.cmd("colorscheme vscode")
         end,
+    },
+
+    {
+        "navarasu/onedark.nvim",
+        priority = 1000,
+        config = function()
+            require("onedark").setup({ style = "darker" })
+        end,
+    },
+
+    {
+        "catppuccin/nvim",
+        priority = 1000,
+        config = function()
+            require("catppuccin").setup({
+                flavour = "mocha",
+                color_overrides = {
+                    mocha = {
+                        base = "#1F1F1F",
+                        mantle = "#2D2D2D",
+                        crust = "#252525",
+                    },
+                },
+            })
+        end,
+    },
+
+    {
+        "EdenEast/nightfox.nvim",
+        priority = 1000,
+        config = function()
+            require("nightfox").setup()
+        end,
+    },
+
+    {
+        "folke/tokyonight.nvim",
+        priority = 1000,
+        config = function()
+            require("tokyonight").setup()
+        end,
+    },
+
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        priority = 1000,
+    },
+
+    {
+        "sainnhe/everforest",
+        priority = 1000,
+    },
+
+    {
+        "rebelot/kanagawa.nvim",
+        priority = 1000,
+    },
+
+    {
+        "Mofiqul/dracula.nvim",
+        priority = 1000,
     },
 
     -- file tree
