@@ -29,7 +29,7 @@
 
     spc (tap-hold-release $tt $ht spc (layer-while-held num))
     ral (tap-hold-release $tt $ht ret (layer-while-held sym))
-    lal (layer-while-held nav)
+    lal (tap-hold-release $tt $ht bspc (layer-while-held nav))
     rct (layer-switch qwerty)
     to_base (layer-switch colemak)
 )

@@ -1,10 +1,20 @@
 grid_keys: u y e i
 grid_exit: ;
 
-left: left
-down: down
-up: up
-right: right
+left: j
+down: l
+up: u
+right: y
+
+left: C-m
+down: C-n
+up: C-e
+right: C-i
+
+left: 6
+down: 7
+up: 8
+right: 9
 
 scroll_down: ,
 scroll_up: .
@@ -18,3 +28,9 @@ activation_key: C-A-n
 
 hint: h
 grid: k
+
+max_speed: 3200
+acceleration: 3500
+decelerator_speed: 300
+scroll_acceleration: 5000
+scroll_deceleration: 15000

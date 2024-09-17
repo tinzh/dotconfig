@@ -97,8 +97,8 @@ unalias gpsupf
 alias gsu='git submodule update --init --recursive'
 alias gpsupf='git push --set-upstream fork'
 
-alias westl='pushd ~/zmk/app; west build -d build/left -b nice_nano_v2 -- -DSHIELD=corne_left -DZMK_CONFIG=~/chocofi-config/config; popd'
-alias westr='pushd ~/zmk/app; west build -d build/right -b nice_nano_v2 -- -DSHIELD=corne_right -DZMK_CONFIG=~/chocofi-config/config; popd'
+alias 'stop-warpd'='launchstd unload /Library/LaunchAgents/com.warpd.warpd.plist'
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
