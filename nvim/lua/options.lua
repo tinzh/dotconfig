@@ -51,3 +51,6 @@ opt.autoread = true
 
 -- fold markers
 opt.foldcolumn = "auto:9"
+
+-- better jumplist
+opt.jumpoptions = "stack"

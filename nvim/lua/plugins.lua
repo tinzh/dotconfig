@@ -78,6 +78,12 @@ plugins = {
     },
 
     -- file tree
+    -- {
+    --     "nvim-tree/nvim-tree.lua",
+    --     config = function()
+    --         require("nvim-tree").setup()
+    --     end,
+    -- },
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
@@ -181,13 +187,13 @@ plugins = {
         end,
     },
 
-    -- preview registers
-    {
-        "tversteeg/registers.nvim",
-        config = function()
-            require("registers").setup({ window = { border = "single" } })
-        end,
-    },
+    -- -- preview registers
+    -- {
+    --     "tversteeg/registers.nvim",
+    --     config = function()
+    --         require("registers").setup({ window = { border = "single" } })
+    --     end,
+    -- },
 
     -- git
     {
@@ -197,11 +203,12 @@ plugins = {
     -- file finding
     {
         "theprimeagen/harpoon",
+        branch = "harpoon2",
         config = function()
             require("harpoon").setup({
-                menu = {
-                    width = vim.api.nvim_win_get_width(0) / 2
-                }
+                -- menu = {
+                --     width = vim.api.nvim_win_get_width(0) / 2
+                -- }
             })
         end,
         dependencies = {
@@ -336,14 +343,6 @@ plugins = {
                     current_tabpage = vim.fn.tabpagenr()
                     vim.cmd.tabdo("Neotree close")
                     vim.cmd.tabnext(current_tabpage)
-                end
-            },
-            post_restore_cmds = {
-                function()
-                    -- current_tabpage = vim.fn.tabpagenr()
-                    -- vim.cmd.tabdo("Neotree show")
-                    -- vim.cmd.tabnext(current_tabpage)
-                    -- vim.cmd("Neotree show")
                 end
             },
         },

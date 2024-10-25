@@ -96,6 +96,7 @@ unalias gsu
 unalias gpsupf
 alias gsu='git submodule update --init --recursive'
 alias gpsupf='git push --set-upstream fork'
+alias gpdf='git push -d fork'
 
 alias 'stop-warpd'='launchstd unload /Library/LaunchAgents/com.warpd.warpd.plist'
 

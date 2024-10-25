@@ -64,6 +64,7 @@ keymap("n", "<leader>cq", "<cmd>ccl<CR>", { desc = "Close quickfix window" })
 
 -- neotree
 keymap("n", "<leader>ti", "<cmd>Neotree<CR>", { desc = "Open Neotree" })
+-- keymap("n", "<leader>ti", "<cmd>NvimTreeOpen<CR>", { desc = "Open Neotree" })
 
 -- telescope
 keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", { desc = "Open Telescope" })
