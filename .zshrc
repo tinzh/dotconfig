@@ -98,6 +98,7 @@ alias gsu='git submodule update --init --recursive'
 alias gpsupf='git push --set-upstream fork'
 alias gpdf='git push -d fork'
 
+alias tfn='tail -F -n +1'
 alias 'stop-warpd'='launchstd unload /Library/LaunchAgents/com.warpd.warpd.plist'
 
 # User configuration

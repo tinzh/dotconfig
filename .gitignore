@@ -2,3 +2,4 @@ abrt/*
 chip/*
 procps/*
 iterm2/*
+tmux/plugins
