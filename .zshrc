@@ -1,4 +1,4 @@
-[ -z "${PS1:-}" ] && return
+ -z "${PS1:-}" ] && return
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -98,7 +98,6 @@ alias gsu='git submodule update --init --recursive'
 alias gpsupf='git push --set-upstream fork'
 alias gpdf='git push -d fork'
 
-alias tfn='tail -F -n +1'
 alias 'stop-warpd'='launchstd unload /Library/LaunchAgents/com.warpd.warpd.plist'
 
 # User configuration

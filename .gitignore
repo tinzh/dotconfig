@@ -3,3 +3,4 @@ chip/*
 procps/*
 iterm2/*
 tmux/plugins
+pulse/*
