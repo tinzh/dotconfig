@@ -17,7 +17,7 @@ autocmd(
         callback = function()
             vim.cmd("hi chiplogalways guifg=#81e397")
             vim.cmd("syn match chiplogalways /^.*|ALWAYS|.*$/");
-            vim.cmd("hi chiplogerror guifg=#a64431")
+            vim.cmd("hi chiplogerror guifg=#cf7e77")
             vim.cmd("syn match chiplogerror /^.*|ERROR |.*$/");
             vim.cmd("hi chiplogwarning guifg=#eae14a")
             vim.cmd("syn match chiplogwarning /^.*|WARN  |.*$/");
@@ -26,6 +26,9 @@ autocmd(
             -- info is normal
             vim.cmd("hi chiplogdebug guifg=#969696")
             vim.cmd("syn match chiplogdebug /^.*|DEBUG |.*$/");
+
+            vim.cmd("hi newfile guifg=#d382db")
+            vim.cmd("syn match newfile /^.*following new file$/");
         end,
         desc = "Highlighting for log files"
     }

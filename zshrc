@@ -33,11 +33,16 @@ unalias gpsupf
 alias gsu='git submodule update --init --recursive'
 alias gpsupf='git push --set-upstream fork'
 
+# for local
 alias s='-L4000:localhost:4000 chhp-sudwchp19'
-alias tfn='tail -F -n +1'
 alias 'stop-warpd'='launchctl unload /Library/LaunchAgents/com.warpd.warpd.plist'
 alias restart-warpd='stop-warpd;sleep 1;warpd'
 alias drwchrome='nohup /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --flag-switches-begin --enable-audio-service-sandbox --disable-background-timer-throttling --disable-renderer-backgrounding --disable-backgrounding-occluded-windows --enable-experimental-extension-apis --flag-switches-end &> /dev/null &'
+
+# for remote
+alias sedcc='sed -i '"'"'s/\/src\/Core\//\/submodules\/core\/src\//g;s/\/src\/CoreAppLibs\//\/submodules\/CoreAppLibs\//g;s/\/src\/ContractDataLibs\//\/submodules\/ContractDataLibs\//g;s/\/src\/ChexLib\//\/submodules\/chex_lib\/src\//g;s/src\/React/submodules\/react\/src/g'"'"
+alias gencmd='scripts/cmake_gen.py -t debug -d build/debug --update-clangd-config && sedcc build/debug/compile_commands.json'
+alias tfn='tail -F -n +1'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
