@@ -34,8 +34,8 @@ alias gsu='git submodule update --init --recursive'
 alias gpsupf='git push --set-upstream fork'
 
 # for local
-alias s='-L4000:localhost:4000 chhp-sudwchp19'
-alias 'stop-warpd'='launchctl unload /Library/LaunchAgents/com.warpd.warpd.plist'
+alias s='ssh -L4000:localhost:4000 chhq-sudwchp19'
+alias stop-warpd='launchctl unload /Library/LaunchAgents/com.warpd.warpd.plist'
 alias restart-warpd='stop-warpd;sleep 1;warpd'
 alias drwchrome='nohup /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --flag-switches-begin --enable-audio-service-sandbox --disable-background-timer-throttling --disable-renderer-backgrounding --disable-backgrounding-occluded-windows --enable-experimental-extension-apis --flag-switches-end &> /dev/null &'
 
