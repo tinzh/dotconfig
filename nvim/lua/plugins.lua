@@ -200,6 +200,10 @@ plugins = {
         "tpope/vim-fugitive",
     },
 
+    {
+        "oguzbilgic/vim-gdiff",
+    },
+
     -- file finding
     {
         "theprimeagen/harpoon",
@@ -265,7 +269,7 @@ plugins = {
                     vim.keymap.set("n", "ge", vim.diagnostic.open_float, { buffer = bufnr, desc = "View whole error" })
                     vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Go to previous error" })
                     vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Go to next error" })
-                    vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename all references" })
+                    vim.keymap.set("n", "<leader>m", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename all references" })
                     vim.keymap.set("n", "k", vim.lsp.buf.hover, { buffer = bufnr, desc = "Display hover information" })
                 end
             )
@@ -285,6 +289,9 @@ plugins = {
                 handlers = {
                     lsp_zero.default_setup,
                 },
+            })
+            require("lspconfig").clangd.setup({
+                cmd = {"clangd", "--header-insertion=never"},
             })
         end,
         dependencies = {
