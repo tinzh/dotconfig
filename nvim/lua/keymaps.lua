@@ -17,6 +17,7 @@ keymap("n", "<leader>r", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]], { desc = 
 
 -- quit all windows
 keymap("n", "<leader>q", "<cmd>wa<CR><cmd>qa<CR>", { desc = "Save and quit all buffers" })
+keymap("n", "<leader>Q", "<cmd>wa<CR><cmd>qa!<CR>", { desc = "Save and quit all buffers" })
 
 -- better scrolling
 keymap( "n", "<C-d>", "<C-d>zz", { desc = "Jump"  })
@@ -40,6 +41,7 @@ keymap("n", "<leader>u", "<cmd>ClangdSwitchSourceHeader<CR>", { desc = "Switch b
 
 -- neotree
 keymap("n", "<leader>ti", "<cmd>Neotree<CR>", { desc = "Open Neotree" })
+keymap("n", "<leader>I", "<cmd>Neotree reveal_file=%<CR>", { desc = "Open Neotree" })
 
 -- telescope
 keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", { desc = "Open Telescope" })
@@ -48,12 +50,12 @@ keymap("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Search for a 
 keymap("n", "<leader>.", "<cmd>Telescope grep_string<CR>", { desc = "Search for current string with Telescope" })
 
 -- harpoon
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
-keymap("n", "<leader>ht", ui.toggle_quick_menu, { desc = "Toggle Harpoon menu" })
-keymap("n", "<leader>ha", function() mark.toggle_file(mark.get_current_index()) end, { desc = "Toggle file to Harpoon" })
-keymap("n", "<leader>te", ui.nav_next, { desc = "Go to next Harpoon mark" })
-keymap("n", "<leader>tn", ui.nav_prev, { desc = "Go to previous Harpoon mark" })
+-- local mark = require("harpoon.mark")
+-- local ui = require("harpoon.ui")
+-- keymap("n", "<leader>ht", ui.toggle_quick_menu, { desc = "Toggle Harpoon menu" })
+-- keymap("n", "<leader>ha", function() mark.toggle_file(mark.get_current_index()) end, { desc = "Toggle file to Harpoon" })
+-- keymap("n", "<leader>te", ui.nav_next, { desc = "Go to next Harpoon mark" })
+-- keymap("n", "<leader>tn", ui.nav_prev, { desc = "Go to previous Harpoon mark" })
 
 -- git
 keymap("n", "gh", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk" })

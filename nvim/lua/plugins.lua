@@ -78,12 +78,6 @@ plugins = {
     },
 
     -- file tree
-    -- {
-    --     "nvim-tree/nvim-tree.lua",
-    --     config = function()
-    --         require("nvim-tree").setup()
-    --     end,
-    -- },
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
@@ -93,12 +87,25 @@ plugins = {
             "MunifTanjim/nui.nvim",
         },
         opts = {
+            default_component_configs = {
+                symlink_target = {
+                    enabled = false,
+                },
+            },
             window = {
                 width = 30,
                 mappings = {
                     ["s"] = "noop",
                     ["S"] = "noop",
                     ["z"] = "noop",
+                },
+            },
+            filesystem = {
+                filtered_items = {
+                    hide_hidden = false,
+                    hide_dotfiles = false,
+                    hide_gitignored = false,
+                    hide_by_name = { ".git" },
                 },
             },
         },
@@ -205,20 +212,20 @@ plugins = {
     },
 
     -- file finding
-    {
-        "theprimeagen/harpoon",
-        branch = "harpoon2",
-        config = function()
-            require("harpoon").setup({
-                -- menu = {
-                --     width = vim.api.nvim_win_get_width(0) / 2
-                -- }
-            })
-        end,
-        dependencies = {
-            "nvim-lua/plenary.nvim"
-        },
-    },
+    -- {
+    --     "theprimeagen/harpoon",
+    --     branch = "harpoon2",
+    --     config = function()
+    --         require("harpoon").setup({
+    --             -- menu = {
+    --             --     width = vim.api.nvim_win_get_width(0) / 2
+    --             -- }
+    --         })
+    --     end,
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim"
+    --     },
+    -- },
 
     -- treesitter
     {
