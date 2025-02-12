@@ -44,6 +44,13 @@ alias sedcc='sed -i '"'"'s/\/src\/Core\//\/submodules\/core\/src\//g;s/\/src\/Co
 alias gencmd='scripts/cmake_gen.py -t debug -d build/debug --update-clangd-config && sedcc build/debug/compile_commands.json'
 alias tfn='tail -F -n +1'
 
+alias ringbell='printf "\a"'
+
+# automaticall resource .zshrc on change
+last_source_time=$(stat -Lc %Y ~/.zshrc)
+PROMPT_COMMAND='test $(stat -Lc %Y ~/.zshrc) -ne $last_source_time && source ~/.zshrc'
+precmd() { eval "$PROMPT_COMMAND" }
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

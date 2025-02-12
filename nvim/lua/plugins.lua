@@ -13,6 +13,8 @@ plugins = {
         priority = 1000,
         config = function()
             vim.cmd("colorscheme vscode")
+            local c = require("vscode.colors").get_colors()
+            vim.api.nvim_set_hl(0, '@keyword', { fg = c.vscPink, bg = 'NONE' })
         end,
     },
 
