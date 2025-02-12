@@ -47,8 +47,13 @@ alias tfn='tail -F -n +1'
 alias ringbell='printf "\a"'
 
 # automaticall resource .zshrc on change
-last_source_time=$(stat -Lc %Y ~/.zshrc)
-PROMPT_COMMAND='test $(stat -Lc %Y ~/.zshrc) -ne $last_source_time && source ~/.zshrc'
+if [[ $(uname) == "Darwin" ]]; then
+    last_source_time=$(stat -Lf %m ~/.zshrc)
+    PROMPT_COMMAND='test $(stat -Lf %m ~/.zshrc) -ne $last_source_time && source ~/.zshrc'
+else
+    last_source_time=$(stat -Lc %Y ~/.zshrc)
+    PROMPT_COMMAND='test $(stat -Lc %Y ~/.zshrc) -ne $last_source_time && source ~/.zshrc'
+fi
 precmd() { eval "$PROMPT_COMMAND" }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

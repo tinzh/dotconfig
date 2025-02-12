@@ -1,0 +1,50 @@
+{
+    "profiles": [
+        {
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 24926,
+                        "vendor_id": 7504
+                    },
+                    "ignore": false
+                }
+            ],
+            "name": "Default profile",
+            "selected": true,
+            "simple_modifications": [
+                {
+                    "from": { "key_code": "f1" },
+                    "to": [
+                        {
+                            "software_function": {
+                                "set_mouse_cursor_position": {
+                                    "screen": 0,
+                                    "x": "50%",
+                                    "y": "50%"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "from": { "key_code": "f4" },
+                    "to": [
+                        {
+                            "software_function": {
+                                "set_mouse_cursor_position": {
+                                    "screen": 1,
+                                    "x": "50%",
+                                    "y": "50%"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}
