@@ -17,7 +17,7 @@ keymap("n", "<leader>r", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]], { desc = 
 
 -- quit all windows
 keymap("n", "<leader>q", "<cmd>wa<CR><cmd>qa<CR>", { desc = "Save and quit all buffers" })
-keymap("n", "<leader>Q", "<cmd>wa<CR><cmd>qa!<CR>", { desc = "Save and quit all buffers" })
+keymap("n", "<leader>Q", "<cmd>wa<CR><cmd>qa!<CR>", { desc = "Quit all buffers" })
 
 -- better scrolling
 keymap( "n", "<C-d>", "<C-d>zz", { desc = "Jump"  })
@@ -44,7 +44,7 @@ keymap("n", "<leader>ti", "<cmd>Neotree<CR>", { desc = "Open Neotree" })
 keymap("n", "<leader>I", "<cmd>Neotree reveal_file=%<CR>", { desc = "Open Neotree" })
 
 -- telescope
-keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", { desc = "Open Telescope" })
+keymap("n", "<leader>f", "<cmd>Telescope find_files no_ignore=true<CR>", { desc = "Open Telescope" })
 keymap("n", "<leader>F", "<cmd>Telescope git_files<CR>", { desc = "Open Telescope with files tracked by Git" })
 keymap("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Search for a string with Telescope" })
 keymap("n", "<leader>.", "<cmd>Telescope grep_string<CR>", { desc = "Search for current string with Telescope" })
@@ -91,15 +91,21 @@ keymap("n", "<F8>", "<C-w>k", { desc = "Easier <C-w>k" })
 keymap("n", "<F9>", "<C-w>l", { desc = "Easier <C-w>l" })
 keymap("n", "<F10>", "<C-w>q", { desc = "Close window", remap = true })
 keymap("n", "<S-F4>", "<cmd>set nosplitright<CR><C-w>v<cmd>set splitright<CR>", { desc = "Split window vertically left" })
+keymap("n", "<F16>", "<cmd>set nosplitright<CR><C-w>v<cmd>set splitright<CR>", { desc = "Split window vertically left" })
 keymap("n", "<S-F5>", "<C-w>s", { desc = "Split window horizontally below" })
+keymap("n", "<F17>", "<C-w>s", { desc = "Split window horizontally below" })
 keymap("n", "<S-F6>", "<cmd>set nosplitbelow<CR><C-w>s<cmd>set splitbelow<CR>", { desc = "Split window horizontally above" })
+keymap("n", "<F18>", "<cmd>set nosplitbelow<CR><C-w>s<cmd>set splitbelow<CR>", { desc = "Split window horizontally above" })
 keymap("n", "<S-F7>", "<C-w>v", { desc = "Split window vertically right" })
--- TODO: get F20 to work to close window
+keymap("n", "<F19>", "<C-w>v", { desc = "Split window vertically right" })
 
 -- tabs
 keymap("n", "<F11>", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 keymap("n", "<F12>", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap("n", "<S-F1>", "<cmd>tabn<CR>", { desc = "Go to next tab" })
+keymap("n", "<F13>", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap("n", "<S-F2>", "<cmd>tabnew<CR>", { desc = "Open new tab" })
-keymap("n", "<C-F2>", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+keymap("n", "<F14>", "<cmd>tabnew<CR>", { desc = "Open new tab" })
+keymap("n", "<C-F14>", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 keymap("n", "<S-F3>", ":tabm ", { desc = "Move tab" })
+keymap("n", "<F15>", ":tabm ", { desc = "Move tab" })

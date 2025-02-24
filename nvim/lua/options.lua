@@ -1,4 +1,4 @@
-local opt = vim.opt -- concision
+local opt = vim.opt
 
 -- hybrid line numbers
 opt.relativenumber = true

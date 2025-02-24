@@ -25,13 +25,43 @@ plugins=(
 # update automatically without asking
 zstyle ':omz:update' mode auto
 
-source $ZSH/oh-my-zsh.sh
+# stuff to only run on first zsh run
+if [ ! -v ISRESOURCE ]; then
 
-unalias g
-unalias gsu
-unalias gpsupf
+    source $ZSH/oh-my-zsh.sh
+
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/home/justzhang/conda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/home/justzhang/conda/etc/profile.d/conda.sh" ]; then
+            . "/home/justzhang/conda/etc/profile.d/conda.sh"
+        else
+            export PATH="/home/justzhang/conda/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+
+    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+    unalias g
+    unalias gb
+    unalias gsu
+    unalias gpsupf
+
+fi
+
+alias gb='git branch | grep -v release'
 alias gsu='git submodule update --init --recursive'
 alias gpsupf='git push --set-upstream fork'
+
+alias gbca='cd ~/caa; pwd; gb; cd ~/cab; pwd; gb; cd ~/cac; pwd; gb; popd > /dev/null; popd > /dev/null; popd > /dev/null'
+alias gbcacore='cd ~/caa/core; pwd; gb; cd ~/cab/core; pwd; gb; cd ~/cac/core; pwd; gb; popd > /dev/null; popd > /dev/null; popd > /dev/null'
+alias gbmos='cd ~/mosa; pwd; gb; cd ~/mosb; pwd; gb; cd ~/mosc; pwd; gb; popd > /dev/null; popd > /dev/null; popd > /dev/null'
 
 # for local
 alias s='ssh -L4000:localhost:4000 chhq-sudwchp19'
@@ -44,33 +74,15 @@ alias sedcc='sed -i '"'"'s/\/src\/Core\//\/submodules\/core\/src\//g;s/\/src\/Co
 alias gencmd='scripts/cmake_gen.py -t debug -d build/debug --update-clangd-config && sedcc build/debug/compile_commands.json'
 alias tfn='tail -F -n +1'
 
+alias rb='printf "\a"'
 alias ringbell='printf "\a"'
 
-# automaticall resource .zshrc on change
+# automatically re-source .zshrc on change
 if [[ $(uname) == "Darwin" ]]; then
     last_source_time=$(stat -Lf %m ~/.zshrc)
-    PROMPT_COMMAND='test $(stat -Lf %m ~/.zshrc) -ne $last_source_time && source ~/.zshrc'
+    PROMPT_COMMAND='test $(stat -Lf %m ~/.zshrc) -ne $last_source_time && ISRESOURCE=true source ~/.zshrc'
 else
     last_source_time=$(stat -Lc %Y ~/.zshrc)
-    PROMPT_COMMAND='test $(stat -Lc %Y ~/.zshrc) -ne $last_source_time && source ~/.zshrc'
+    PROMPT_COMMAND='test $(stat -Lc %Y ~/.zshrc) -ne $last_source_time && ISRESOURCE=true source ~/.zshrc'
 fi
 precmd() { eval "$PROMPT_COMMAND" }
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/justzhang/conda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/justzhang/conda/etc/profile.d/conda.sh" ]; then
-        . "/home/justzhang/conda/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/justzhang/conda/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-

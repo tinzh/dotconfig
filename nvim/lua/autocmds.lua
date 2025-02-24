@@ -41,5 +41,15 @@ autocmd(
         callback = function()
             vim.keymap.set("n", "<CR>", "<CR>", { buffer = true })
         end,
+        desc = "Revert <CR> keymap for quickfix menu"
+    }
+)
+
+autocmd(
+    "BufEnter",
+    {
+        callback = function()
+            vim.opt_local.modifiable.value = not vim.opt_local.readonly.value
+        end,
     }
 )

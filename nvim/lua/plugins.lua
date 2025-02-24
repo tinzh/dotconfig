@@ -5,6 +5,9 @@ plugins = {
     -- list available keymaps
     {
         "folke/which-key.nvim",
+        opts = {
+            delay = 400,
+        },
     },
 
     -- color theme
@@ -12,9 +15,12 @@ plugins = {
         "Mofiqul/vscode.nvim",
         priority = 1000,
         config = function()
+            require("vscode").setup({ terminal_colors = false })
             vim.cmd("colorscheme vscode")
             local c = require("vscode.colors").get_colors()
             vim.api.nvim_set_hl(0, '@keyword', { fg = c.vscPink, bg = 'NONE' })
+            vim.api.nvim_set_hl(0, '@keyword.modifier', { fg = c.vscBlue, bg = 'NONE' })
+            vim.api.nvim_set_hl(0, '@constructor', { fg = c.vscBlueGreen, bg = 'NONE' })
         end,
     },
 
@@ -150,7 +156,6 @@ plugins = {
             require("telescope").setup({
                 defaults = {
                     vimgrep_arguments = rg_args
-
                 },
                 pickers = {
                     find_files = {
@@ -351,9 +356,11 @@ plugins = {
 
     -- session saving
     {
-        "rmagatti/auto-session",
+        "cameronr/auto-session",
+        branch = 'shada',
         opts = {
-            auto_session_enabled = true,
+            -- auto_session_enabled = true,
+            save_and_restore_shada = true,
             pre_save_cmds = {
                 function()
                     current_tabpage = vim.fn.tabpagenr()
@@ -392,6 +399,11 @@ plugins = {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         config = true,
+    },
+
+    -- automatic file reload
+    {
+        "djoshea/vim-autoread",
     },
 }
 
