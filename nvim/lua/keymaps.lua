@@ -41,10 +41,11 @@ keymap("n", "<leader>u", "<cmd>ClangdSwitchSourceHeader<CR>", { desc = "Switch b
 
 -- neotree
 keymap("n", "<leader>ti", "<cmd>Neotree<CR>", { desc = "Open Neotree" })
-keymap("n", "<leader>I", "<cmd>Neotree reveal_file=%<CR>", { desc = "Open Neotree" })
+keymap("n", "<leader>to", "<cmd>Neotree reveal_file=%<CR>", { desc = "Open Neotree to file" })
 
 -- telescope
-keymap("n", "<leader>f", "<cmd>Telescope find_files no_ignore=true<CR>", { desc = "Open Telescope" })
+keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", { desc = "Open Telescope" })
+-- keymap("n", "<leader>f", "<cmd>lua require('telescope.builtin').find_files({find_command = { 'rg', '--follow', '--sort', 'path', '--no-ignore' }})<CR>", { desc = "Open Telescope" })
 keymap("n", "<leader>F", "<cmd>Telescope git_files<CR>", { desc = "Open Telescope with files tracked by Git" })
 keymap("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Search for a string with Telescope" })
 keymap("n", "<leader>.", "<cmd>Telescope grep_string<CR>", { desc = "Search for current string with Telescope" })
@@ -60,18 +61,21 @@ keymap("n", "<leader>.", "<cmd>Telescope grep_string<CR>", { desc = "Search for 
 -- git
 keymap("n", "gh", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk" })
 keymap("n", "gt", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
+keymap("n", "<leader>gn", "<cmd>Gitsigns nav_hunk prev<CR>zz", { desc = "Go to previous hunk" })
+keymap("n", "<leader>ge", "<cmd>Gitsigns nav_hunk next<CR>zz", { desc = "Go to next hunk" })
 keymap("n", "gm", "<cmd>BlameToggle virtual<CR>", { desc = "Toggle Git blame" })
 keymap("n", "gM", "<cmd>BlameToggle window<CR>", { desc = "Toggle Git blame" })
-keymap("n", "co", "<cmd>GitConflictChooseOurs<CR>", { desc = "Merge conflict: choose original" })
-keymap("n", "ch", "<cmd>GitConflictChooseTheirs<CR>", { desc = "Merge conflict: choose theirs" })
-keymap("n", "cb", "<cmd>GitConflictChooseBoth<CR>", { desc = "Merge conflict: choose both" })
-keymap("n", "cn", "<cmd>GitConflictChooseNone<CR>", { desc = "Merge conflict: choose none" })
-keymap("n", "[x", "<cmd>GitConflictPrevConflict<CR>", { desc = "Merge conflict: go to previous" })
-keymap("n", "]x", "<cmd>GitConflictNextConflict<CR>", { desc = "Merge conflict: go to next" })
+keymap("n", "<leader>co", "<cmd>ConflictMarkerOurselves<CR>", { desc = "Merge conflict: choose original" })
+keymap("n", "<leader>ct", "<cmd>ConflictMarkerThemselves<CR>", { desc = "Merge conflict: choose theirs" })
+keymap("n", "<leader>cb", "<cmd>ConflictMarkerBoth<CR>", { desc = "Merge conflict: choose both" })
+keymap("n", "<leader>cv", "<cmd>ConflictMarkerNone<CR>", { desc = "Merge conflict: choose none" })
+keymap("n", "<leader>cm", "<cmd>ConflictMarkerPrevHunk<CR>", { desc = "Merge conflict: go to previous" })
+keymap("n", "<leader>ci", "<cmd>ConflictMarkerNextHunk<CR>", { desc = "Merge conflict: go to next" })
 
 -- terminal
 keymap("t", "<C-a>",  "<C-\\><C-n>", { desc = "Escape in terminal" })
 keymap("n", "<leader>tm", ":term<CR>i", { desc = "Open terminal in current window" })
+keymap("n", "<F5>", ":term<CR>i", { desc = "Open terminal in current window" })
 
 -- windows and splitting
 keymap("n", "<leader>sm", "<cmd>set nosplitright<CR><C-w>v<cmd>set splitright<CR>", { desc = "Split window vertically left" })
@@ -98,6 +102,7 @@ keymap("n", "<S-F6>", "<cmd>set nosplitbelow<CR><C-w>s<cmd>set splitbelow<CR>", 
 keymap("n", "<F18>", "<cmd>set nosplitbelow<CR><C-w>s<cmd>set splitbelow<CR>", { desc = "Split window horizontally above" })
 keymap("n", "<S-F7>", "<C-w>v", { desc = "Split window vertically right" })
 keymap("n", "<F19>", "<C-w>v", { desc = "Split window vertically right" })
+keymap("n", "<C-p>", "<leader>u", { desc = "Switch between .h/.cpp files", remap = true })
 
 -- tabs
 keymap("n", "<F11>", "<cmd>tabclose<CR>", { desc = "Close current tab" })

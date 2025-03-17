@@ -10,11 +10,8 @@ fi
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/bin/nvim/bin:$PATH
 
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
+export ZSH="$HOME/.oh-my-zsh" # path to your oh-my-zsh installation
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
 plugins=(
     git
     zsh-autosuggestions
@@ -22,8 +19,7 @@ plugins=(
     dirhistory
     you-should-use
 )
-# update automatically without asking
-zstyle ':omz:update' mode auto
+zstyle ':omz:update' mode auto # update oh-my-zsh automatically without asking
 
 # stuff to only run on first zsh run
 if [ ! -v ISRESOURCE ]; then
@@ -50,32 +46,75 @@ if [ ! -v ISRESOURCE ]; then
 
     unalias g
     unalias gb
-    unalias gsu
+    unalias gcan!
+    unalias glo
     unalias gpsupf
-
+    unalias gsu
 fi
 
+# core git alias extensions
 alias gb='git branch | grep -v release'
-alias gsu='git submodule update --init --recursive'
+alias gcan!='gcann!'
+alias gcsn!='ga src; gcn! --date=now'
+alias gcsm='ga src; gcmsg'
+alias gcg='git config --global'
+alias gcgu='git config --global --unset'
+alias gcoo='gco HEAD~'
+alias gdo='gd HEAD~'
+alias glo='glof | head -n 5'
+alias glof='git log --oneline --decorate --color=always'
 alias gpsupf='git push --set-upstream fork'
+alias grboo='grb HEAD~ --onto'
+alias grhho='grhh HEAD~'
+alias grho='grh HEAD~'
+alias grf='grff | head -n 5'
+alias grff='git reflog --decorate --color=always'
+alias gsu='git submodule update --init --recursive'
 
+# display branches for all ca or mos repors
 alias gbca='cd ~/caa; pwd; gb; cd ~/cab; pwd; gb; cd ~/cac; pwd; gb; popd > /dev/null; popd > /dev/null; popd > /dev/null'
 alias gbcacore='cd ~/caa/core; pwd; gb; cd ~/cab/core; pwd; gb; cd ~/cac/core; pwd; gb; popd > /dev/null; popd > /dev/null; popd > /dev/null'
 alias gbmos='cd ~/mosa; pwd; gb; cd ~/mosb; pwd; gb; cd ~/mosc; pwd; gb; popd > /dev/null; popd > /dev/null; popd > /dev/null'
 
-# for local
+export DELTA_FEATURES=+side-by-side
+
+# for local mac laptop
 alias s='ssh -L4000:localhost:4000 chhq-sudwchp19'
 alias stop-warpd='launchctl unload /Library/LaunchAgents/com.warpd.warpd.plist'
 alias restart-warpd='stop-warpd;sleep 1;warpd'
 alias drwchrome='nohup /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --flag-switches-begin --enable-audio-service-sandbox --disable-background-timer-throttling --disable-renderer-backgrounding --disable-backgrounding-occluded-windows --enable-experimental-extension-apis --flag-switches-end &> /dev/null &'
 
-# for remote
+# get compile_commands right
 alias sedcc='sed -i '"'"'s/\/src\/Core\//\/submodules\/core\/src\//g;s/\/src\/CoreAppLibs\//\/submodules\/CoreAppLibs\//g;s/\/src\/ContractDataLibs\//\/submodules\/ContractDataLibs\//g;s/\/src\/ChexLib\//\/submodules\/chex_lib\/src\//g;s/src\/React/submodules\/react\/src/g'"'"
-alias gencmd='scripts/cmake_gen.py -t debug -d build/debug --update-clangd-config && sedcc build/debug/compile_commands.json'
-alias tfn='tail -F -n +1'
 
-alias rb='printf "\a"'
-alias ringbell='printf "\a"'
+
+# runs command, setting $wd to working directory
+function use-wd() {
+    wd=$(pwd | cut -d/ -f4)
+    eval "$*"
+}
+function alias-wd() { alias $1="use-wd '$2'" }
+alias awd='alias-wd'
+
+# build helpers
+awd ca 'conda activate $wd'
+awd cr 'conda activate base && yes | conda env remove -n $wd; yes | conda env create --name $wd --file ~/$wd/conda/deploy.yml && ca' # conda recreate, used by cu as fallback
+awd cu 'ca && yes | conda env update -f ~/$wd/conda/deploy.yml || cr' # conda update, preferred over cr
+
+awd gendebug 'pushd ~/$wd && (conda activate $wd && scripts/cmake_gen.py -t debug -d build/debug --update-clangd-config && sedcc build/debug/compile_commands.json; popd)'
+awd genrelease 'pushd ~/$wd && (conda activate $wd && scripts/cmake_gen.py -t release -d build/release; popd)'
+awd reset-release '(pushd ~/$wd && (rm -rf build/release; popd)); genrelease'
+
+awd nd 'ca && cd ~/$wd/build/debug && ninja -j 60'
+awd ndi 'nd install'
+awd n 'ca && cd ~/$wd/build/release && ninja -j 60'
+awd ni 'n install'
+function cpi() { echo "using version ${1:-318}"; use-wd "cp -av install/* ~/qube/\$wd/${1:-318}" } # copy install folder to qube
+function nicp() { ni && cpi $1 && rb }
+
+# misc helpers
+alias rb='printf "\a"' # ring bell
+alias tfn='tail -F -n +1'
 
 # automatically re-source .zshrc on change
 if [[ $(uname) == "Darwin" ]]; then

@@ -149,20 +149,21 @@ plugins = {
     -- fuzzy finder
     {
         "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
         config = function()
             rg_args = { unpack(require("telescope.config").values.vimgrep_arguments) }
             table.insert(rg_args, "-L")
             require("telescope").setup({
                 defaults = {
+                    -- for live grep
                     vimgrep_arguments = rg_args
                 },
                 pickers = {
                     find_files = {
-                        follow = true
+                        follow = true,
+                        no_ignore = true,
                     },
                     git_files = {
-                        follow = true
+                        follow = true,
                     },
                 },
             })
@@ -210,9 +211,9 @@ plugins = {
     -- },
 
     -- git
-    {
-        "tpope/vim-fugitive",
-    },
+    -- {
+    --     "tpope/vim-fugitive",
+    -- },
 
     {
         "oguzbilgic/vim-gdiff",
@@ -245,7 +246,7 @@ plugins = {
                 highlight = { enable = true },
                 indent = {
                     enable = true,
-                    disable = { "lua" },
+                    disable = { "lua", "gitcommit" },
                 },
                 textobjects = {
                     select = {
@@ -285,6 +286,7 @@ plugins = {
                     vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Go to next error" })
                     vim.keymap.set("n", "<leader>m", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename all references" })
                     vim.keymap.set("n", "k", vim.lsp.buf.hover, { buffer = bufnr, desc = "Display hover information" })
+                    vim.api.nvim_create_user_command("LZF", "LspZeroFormat", {})
                 end
             )
 
@@ -330,11 +332,20 @@ plugins = {
 
     -- git conflicts
     {
-        "akinsho/git-conflict.nvim",
-        version = "*",
-        opts = {
-            default_mappings = false,
-        },
+        "rhysd/conflict-marker.vim",
+        config = function()
+            vim.g.conflict_marker_enable_mappings = 0
+            -- vim.g.conflict_marker_highlight_group = ""
+
+            vim.g.conflict_marker_begin = "^<<<<<<< .*$"
+            vim.g.conflict_marker_end = "^>>>>>>> .*$"
+
+            vim.cmd("highlight ConflictMarkerBegin guibg=#355c54")
+            vim.cmd("highlight ConflictMarkerOurs guibg=#25403a")
+            vim.cmd("highlight ConflictMarkerTheirs guibg=#26394d")
+            vim.cmd("highlight ConflictMarkerEnd guibg=#344f69")
+            vim.cmd("highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81")
+        end,
     },
 
     -- indent guessing
