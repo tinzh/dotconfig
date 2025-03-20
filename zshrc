@@ -53,6 +53,7 @@ if [ ! -v ISRESOURCE ]; then
 fi
 
 # core git alias extensions
+alias gas='git add src/'
 alias gb='git branch | grep -v release'
 alias gcan!='gcann!'
 alias gcsn!='ga src; gcn! --date=now'
@@ -95,15 +96,20 @@ function use-wd() {
 }
 function alias-wd() { alias $1="use-wd '$2'" }
 alias awd='alias-wd'
+function alias-wd-pushd() { alias $1="use-wd 'pushd ~/$wd && {$2; popd}'" } # goto root of repo, restore dir; can't take arguments after
+alias awdp='alias-wd-pushd'
 
 # build helpers
+unsetopt pushdignoredups
 awd ca 'conda activate $wd'
 awd cr 'conda activate base && yes | conda env remove -n $wd; yes | conda env create --name $wd --file ~/$wd/conda/deploy.yml && ca' # conda recreate, used by cu as fallback
 awd cu 'ca && yes | conda env update -f ~/$wd/conda/deploy.yml || cr' # conda update, preferred over cr
 
-awd gendebug 'pushd ~/$wd && (conda activate $wd && scripts/cmake_gen.py -t debug -d build/debug --update-clangd-config && sedcc build/debug/compile_commands.json; popd)'
-awd genrelease 'pushd ~/$wd && (conda activate $wd && scripts/cmake_gen.py -t release -d build/release; popd)'
-awd reset-release '(pushd ~/$wd && (rm -rf build/release; popd)); genrelease'
+awdp gendebug 'conda activate $wd && scripts/cmake_gen.py -t debug -d build/debug --update-clangd-config && sedcc build/debug/compile_commands.json'
+awdp genrelease 'conda activate $wd && scripts/cmake_gen.py -t release -d build/release'
+awdp reset-debug 'rm -rf build/debug; gendebug'
+awdp reset-release 'rm -rf build/release; genrelease'
+awdp rmclangdcache 'rm -rf build/debug/.cache/clangd/'
 
 awd nd 'ca && cd ~/$wd/build/debug && ninja -j 60'
 awd ndi 'nd install'
@@ -115,6 +121,7 @@ function nicp() { ni && cpi $1 && rb }
 # misc helpers
 alias rb='printf "\a"' # ring bell
 alias tfn='tail -F -n +1'
+alias cdirs='dirs -c'
 
 # automatically re-source .zshrc on change
 if [[ $(uname) == "Darwin" ]]; then
