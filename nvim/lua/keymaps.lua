@@ -17,7 +17,7 @@ keymap("n", "<leader>r", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]], { desc = 
 
 -- quit all windows
 keymap("n", "<leader>q", "<cmd>wa<CR><cmd>qa<CR>", { desc = "Save and quit all buffers" })
-keymap("n", "<leader>Q", "<cmd>wa<CR><cmd>qa!<CR>", { desc = "Quit all buffers" })
+keymap("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Quit all buffers" })
 
 -- better scrolling
 keymap( "n", "<C-d>", "<C-d>zz", { desc = "Jump"  })

@@ -54,9 +54,14 @@ fi
 
 # core git alias extensions
 alias gas='git add src/'
+alias gcan!='gcann!'
+alias gcana='gcan!'
+alias gcsn!='ga src; gcn! --date=now'
+alias gcsna='gcsn!'
+alias gcsm='ga src; gcmsg'
 alias gb='git branch | grep -v release'
 alias gcan!='gcann!'
-alias gcsn!='ga src; gcn! --date=now'
+alias gcsn!='ga src; gcn! --date=npow'
 alias gcsm='ga src; gcmsg'
 alias gcg='git config --global'
 alias gcgu='git config --global --unset'
@@ -96,7 +101,7 @@ function use-wd() {
 }
 function alias-wd() { alias $1="use-wd '$2'" }
 alias awd='alias-wd'
-function alias-wd-pushd() { alias $1="use-wd 'pushd ~/$wd && {$2; popd}'" } # goto root of repo, restore dir; can't take arguments after
+function alias-wd-pushd() { alias $1="use-wd 'pushd ~/\$wd && {$2; popd}'" } # goto root of repo, restore dir; can't take arguments after
 alias awdp='alias-wd-pushd'
 
 # build helpers
