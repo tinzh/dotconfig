@@ -123,6 +123,15 @@ awd ni 'n install'
 function cpi() { echo "using version ${1:-318}"; use-wd "cp -av install/* ~/qube/\$wd/${1:-318}" } # copy install folder to qube
 function nicp() { ni && cpi $1 && rb }
 
+export PATH=~/.local/bin:"$PATH"
+alias westl='pushd ~/zmk/app; west build -d build/left -b nice_nano_v2 -- -DSHIELD="corne_left nice_view_adapter nice_view" -DZMK_CONFIG=/home/jmz8rm/chocofi-config/config/; popd'
+alias westr='pushd ~/zmk/app; west build -d build/right -b nice_nano_v2 -- -DSHIELD="corne_right nice_view_adapter nice_view" -DZMK_CONFIG=/home/jmz8rm/chocofi-config/config/; popd'
+alias westlr='westl && westr && cp ~/zmk/app/build/left/zephyr/zmk.uf2 /mnt/c/Users/asian/Documents/"keyboard layouts"/chocofi-left.uf2 && cp ~/zmk/app/build/right/zephyr/zmk.uf2 /mnt/c/Users/asian/Documents/"keyboard layouts"/chocofi-right.uf2'
+
+alias westpl='pushd ~/zmk/app; west build -p -d build/left -b nice_nano_v2 -- -DSHIELD="corne_left nice_view_adapter nice_view" -DZMK_CONFIG=/home/jmz8rm/chocofi-config/config/; popd'
+alias westpr='pushd ~/zmk/app; west build -p -d build/right -b nice_nano_v2 -- -DSHIELD="corne_right nice_view_adapter nice_view" -DZMK_CONFIG=/home/jmz8rm/chocofi-config/config/; popd'
+alias westplr='westpl && westpr && cp ~/zmk/app/build/left/zephyr/zmk.uf2 /mnt/c/Users/asian/Documents/"keyboard layouts"/chocofi-left.uf2 && cp ~/zmk/app/build/right/zephyr/zmk.uf2 /mnt/c/Users/asian/Documents/"keyboard layouts"/chocofi-right.uf2'
+
 # misc helpers
 alias rb='printf "\a"' # ring bell
 alias tfn='tail -F -n +1'
