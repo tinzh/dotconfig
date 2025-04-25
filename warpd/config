@@ -13,11 +13,9 @@ buttons: n / o
 drag: m
 
 hint_activation_key: C-A-h
-grid_activation_key: C-A-k
 activation_key: C-A-n
 
 hint: h
-grid: k
 
 max_speed: 2000
 acceleration: 3500
