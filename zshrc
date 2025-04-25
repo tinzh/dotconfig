@@ -58,11 +58,9 @@ alias gcan!='gcann!'
 alias gcana='gcan!'
 alias gcsn!='ga src; gcn! --date=now'
 alias gcsna='gcsn!'
+alias gcna='gcn!'
 alias gcsm='ga src; gcmsg'
 alias gb='git branch | grep -v release'
-alias gcan!='gcann!'
-alias gcsn!='ga src; gcn! --date=npow'
-alias gcsm='ga src; gcmsg'
 alias gcg='git config --global'
 alias gcgu='git config --global --unset'
 alias gcoo='gco HEAD~'
@@ -93,7 +91,6 @@ alias drwchrome='nohup /Applications/Google\ Chrome.app/Contents/MacOS/Google\ C
 # get compile_commands right
 alias sedcc='sed -i '"'"'s/\/src\/Core\//\/submodules\/core\/src\//g;s/\/src\/CoreAppLibs\//\/submodules\/CoreAppLibs\//g;s/\/src\/ContractDataLibs\//\/submodules\/ContractDataLibs\//g;s/\/src\/ChexLib\//\/submodules\/chex_lib\/src\//g;s/src\/React/submodules\/react\/src/g'"'"
 
-
 # runs command, setting $wd to working directory
 function use-wd() {
     wd=$(pwd | cut -d/ -f4)
@@ -122,6 +119,7 @@ awd n 'ca && cd ~/$wd/build/release && ninja -j 60'
 awd ni 'n install'
 function cpi() { echo "using version ${1:-318}"; use-wd "cp -av install/* ~/qube/\$wd/${1:-318}" } # copy install folder to qube
 function nicp() { ni && cpi $1 && rb }
+function ndicp() { ndi && cpi $1 && rb }
 
 export PATH=~/.local/bin:"$PATH"
 alias westl='pushd ~/zmk/app; west build -d build/left -b nice_nano_v2 -- -DSHIELD="corne_left nice_view_adapter nice_view" -DZMK_CONFIG=/home/jmz8rm/chocofi-config/config/; popd'
@@ -136,6 +134,17 @@ alias westplr='westpl && westpr && cp ~/zmk/app/build/left/zephyr/zmk.uf2 /mnt/c
 alias rb='printf "\a"' # ring bell
 alias tfn='tail -F -n +1'
 alias cdirs='dirs -c'
+alias cdcc='cd ~/chip-configs'
+
+function ri() { # Run (command) In
+    cd ~/$1
+    eval "$2"
+    popd
+}
+
+
+# misc configs
+set -o ignoreeof
 
 # automatically re-source .zshrc on change
 if [[ $(uname) == "Darwin" ]]; then

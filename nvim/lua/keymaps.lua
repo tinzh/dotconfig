@@ -111,6 +111,9 @@ keymap("n", "<S-F1>", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap("n", "<F13>", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap("n", "<S-F2>", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 keymap("n", "<F14>", "<cmd>tabnew<CR>", { desc = "Open new tab" })
-keymap("n", "<C-F14>", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+keymap("n", "<C-F2>", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 keymap("n", "<S-F3>", ":tabm ", { desc = "Move tab" })
 keymap("n", "<F15>", ":tabm ", { desc = "Move tab" })
+
+-- long names
+keymap("i", "cmct", "CmeMdp3ConflatedTcp", { desc = "CmeMdp3ConflatedTcp" })

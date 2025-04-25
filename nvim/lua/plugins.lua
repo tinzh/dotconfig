@@ -7,6 +7,7 @@ plugins = {
         "folke/which-key.nvim",
         opts = {
             delay = 400,
+            sort = {"alphanum"}
         },
     },
 
@@ -15,7 +16,10 @@ plugins = {
         "Mofiqul/vscode.nvim",
         priority = 1000,
         config = function()
-            require("vscode").setup({ terminal_colors = false })
+            require("vscode").setup({
+                terminal_colors = false,
+                transparent = true,
+            });
             vim.cmd("colorscheme vscode")
             local c = require("vscode.colors").get_colors()
             vim.api.nvim_set_hl(0, '@keyword', { fg = c.vscPink, bg = 'NONE' })
