@@ -117,3 +117,4 @@ keymap("n", "<F15>", ":tabm ", { desc = "Move tab" })
 
 -- long names
 keymap("i", "cmct", "CmeMdp3ConflatedTcp", { desc = "CmeMdp3ConflatedTcp" })
+keymap("i", "rdn", "ReferenceDataNotification", { desc = "ReferenceDataNotification" })

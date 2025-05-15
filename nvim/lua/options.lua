@@ -54,3 +54,6 @@ opt.foldcolumn = "auto:9"
 
 -- better jumplist
 opt.jumpoptions = "stack"
+
+-- flush statusline
+-- opt.cmdheight = 0

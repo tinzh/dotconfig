@@ -19,6 +19,7 @@ plugins = {
             require("vscode").setup({
                 terminal_colors = false,
                 transparent = true,
+                color_overrides = { vscCursorDarkDark = "#07090a", vscTabCurrent = '#000000', vscTabOther = '#212121', vscTabOutside = '', },
             });
             vim.cmd("colorscheme vscode")
             local c = require("vscode.colors").get_colors()
@@ -127,18 +128,55 @@ plugins = {
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = {
-            options = {
-                theme = "codedark",
-            },
-            sections = {
-                lualine_c = { { "filename", path = 1 } },
-                lualine_x = {},
-            },
-            inactive_sections = {
-                lualine_c = { { "filename", path = 1} },
-            },
-        },
+        config = function()
+            local colors = {
+                gray     = '#3C3C3C',
+                lightred = '#D16969',
+                blue     = '#569CD6',
+                pink     = '#C586C0',
+                black    = '#15191e',
+                white    = '#D4D4D4',
+                green    = '#608B4E',
+            }
+            custom_codedark = {
+                normal = {
+                    b = { fg = colors.green, },
+                    a = { fg = colors.black, bg = colors.green, gui = 'bold' },
+                    c = { fg = colors.white, },
+                },
+                visual = {
+                    b = { fg = colors.pink, },
+                    a = { fg = colors.black, bg = colors.pink, gui = 'bold' },
+                },
+                inactive = {
+                    b = { fg = colors.black, bg = colors.blue },
+                    a = { fg = colors.white, bg = colors.gray, gui = 'bold' },
+                },
+                replace = {
+                    b = { fg = colors.lightred, },
+                    a = { fg = colors.black, bg = colors.lightred, gui = 'bold' },
+                    c = { fg = colors.white, },
+                },
+                insert = {
+                    b = { fg = colors.blue, },
+                    a = { fg = colors.black, bg = colors.blue, gui = 'bold' },
+                    c = { fg = colors.white, },
+                },
+            }
+
+            require("lualine").setup({
+                options = {
+                    theme = custom_codedark,
+                },
+                sections = {
+                    lualine_c = { { "filename", path = 1 } },
+                    lualine_x = {},
+                },
+                inactive_sections = {
+                    lualine_c = { { "filename", path = 1} },
+                }
+            })
+        end,
     },
 
     -- comment/uncomment blocks of code easily

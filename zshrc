@@ -47,6 +47,7 @@ if [ ! -v ISRESOURCE ]; then
     unalias g
     unalias gb
     unalias gcan!
+    unalias gcm
     unalias glo
     unalias gpsupf
     unalias gsu
@@ -54,12 +55,14 @@ fi
 
 # core git alias extensions
 alias gas='git add src/'
+alias ga.='git add .'
 alias gcan!='gcann!'
 alias gcana='gcan!'
 alias gcsn!='ga src; gcn! --date=now'
 alias gcsna='gcsn!'
 alias gcna='gcn!'
 alias gcsm='ga src; gcmsg'
+alias gcm='gcmsg'
 alias gb='git branch | grep -v release'
 alias gcg='git config --global'
 alias gcgu='git config --global --unset'
