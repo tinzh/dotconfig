@@ -67,16 +67,22 @@ alias gb='git branch | grep -v release'
 alias gcg='git config --global'
 alias gcgu='git config --global --unset'
 alias gcoo='gco HEAD~'
+alias gco.='gco .'
 alias gdo='gd HEAD~'
 alias glo='glof | head -n 5'
 alias glof='git log --oneline --decorate --color=always'
 alias gpsupf='git push --set-upstream fork'
+alias gpsupff='git push --force --set-upstream fork'
 alias grboo='grb HEAD~ --onto'
 alias grhho='grhh HEAD~'
 alias grho='grh HEAD~'
 alias grf='grff | head -n 5'
 alias grff='git reflog --decorate --color=always'
+alias gsta='git stash --all'
 alias gsu='git submodule update --init --recursive'
+alias gt='git tag'
+alias gtl='gt -l'
+alias gwp='git reset --hard && git clean --force -df' # same as gwipe,
 
 # display branches for all ca or mos repors
 alias gbca='cd ~/caa; pwd; gb; cd ~/cab; pwd; gb; cd ~/cac; pwd; gb; popd > /dev/null; popd > /dev/null; popd > /dev/null'
@@ -107,6 +113,7 @@ alias awdp='alias-wd-pushd'
 # build helpers
 unsetopt pushdignoredups
 awd ca 'conda activate $wd'
+awd cab 'conda activate base'
 awd cr 'conda activate base && yes | conda env remove -n $wd; yes | conda env create --name $wd --file ~/$wd/conda/deploy.yml && ca' # conda recreate, used by cu as fallback
 awd cu 'ca && yes | conda env update -f ~/$wd/conda/deploy.yml || cr' # conda update, preferred over cr
 
@@ -117,12 +124,18 @@ awdp reset-release 'rm -rf build/release; genrelease'
 awdp rmclangdcache 'rm -rf build/debug/.cache/clangd/'
 
 awd nd 'ca && cd ~/$wd/build/debug && ninja -j 60'
+awd ndk 'ca && cd ~/$wd/build/debug && ninja -j 60 -k 99999'
 awd ndi 'nd install'
 awd n 'ca && cd ~/$wd/build/release && ninja -j 60'
+awd nk 'ca && cd ~/$wd/build/release && ninja -j 60 -k 99999'
 awd ni 'n install'
-function cpi() { echo "using version ${1:-318}"; use-wd "cp -av install/* ~/qube/\$wd/${1:-318}" } # copy install folder to qube
+function cpi() { echo "using version ${1:-319}"; use-wd "rsync -av install/* ~/qube/\$wd/${1:-319}" } # copy install folder to qube
 function nicp() { ni && cpi $1 && rb }
 function ndicp() { ndi && cpi $1 && rb }
+
+
+
+# keyboard zmk
 
 export PATH=~/.local/bin:"$PATH"
 alias westl='pushd ~/zmk/app; west build -d build/left -b nice_nano_v2 -- -DSHIELD="corne_left nice_view_adapter nice_view" -DZMK_CONFIG=/home/jmz8rm/chocofi-config/config/; popd'
@@ -138,12 +151,15 @@ alias rb='printf "\a"' # ring bell
 alias tfn='tail -F -n +1'
 alias cdirs='dirs -c'
 alias cdcc='cd ~/chip-configs'
+alias ccnvim='cdcc;nvim'
 
 function ri() { # Run (command) In
     cd ~/$1
     eval "$2"
     popd
 }
+
+function gtr() { gt | grep "3.$1" | grep "$2" | sort -r | head -n 1 }
 
 
 # misc configs

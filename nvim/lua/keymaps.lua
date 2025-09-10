@@ -27,6 +27,9 @@ keymap( "n", "<C-u>", "<C-u>zz", { desc = "Jump"  })
 keymap("n", "h", "'", { desc = "Jump to mark" })
 keymap("n", "l", "@", { desc = "Run macro" })
 
+-- delete word in insert mode
+keymap("i", "<C-w>", "<C-o>db", { desc = "Delete word" })
+
 -- leap.nvim
 keymap({"n", "x", "o"}, "s", "<Plug>(leap)", { desc = "Leap" })
 keymap({"n", "x", "o"}, "S", "<Plug>(leap-from-window)", { desc = "Leap from window" })
@@ -48,7 +51,11 @@ keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", { desc = "Open Telesco
 -- keymap("n", "<leader>f", "<cmd>lua require('telescope.builtin').find_files({find_command = { 'rg', '--follow', '--sort', 'path', '--no-ignore' }})<CR>", { desc = "Open Telescope" })
 keymap("n", "<leader>F", "<cmd>Telescope git_files<CR>", { desc = "Open Telescope with files tracked by Git" })
 keymap("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Search for a string with Telescope" })
+keymap("n", "<leader>i", "<cmd>Telescope live_grep<CR>", { desc = "Search for a string with Telescope" })
 keymap("n", "<leader>.", "<cmd>Telescope grep_string<CR>", { desc = "Search for current string with Telescope" })
+
+-- wrap
+keymap("n", "<leader>sw", "<cmd>set wrap!<CR>", { desc = "Toggle wrap" })
 
 -- harpoon
 -- local mark = require("harpoon.mark")
@@ -83,6 +90,7 @@ keymap("n", "<leader>si", "<C-w>v", { desc = "Split window vertically right" })
 keymap("n", "<leader>sn", "<C-w>s", { desc = "Split window horizontally below" })
 keymap("n", "<leader>se", "<cmd>set nosplitbelow<CR><C-w>s<cmd>set splitbelow<CR>", { desc = "Split window horizontally above" })
 keymap("n", "<leader>;", "<C-w>q", { desc = "Close window", remap = true })
+keymap("n", "<leader>o", "<C-w>q", { desc = "Close window", remap = true })
 keymap("n", "<leader>wm", "<C-w>h", { desc = "Easier <C-w>h" })
 keymap("n", "<leader>wn", "<C-w>j", { desc = "Easier <C-w>j" })
 keymap("n", "<leader>we", "<C-w>k", { desc = "Easier <C-w>k" })
@@ -118,3 +126,5 @@ keymap("n", "<F15>", ":tabm ", { desc = "Move tab" })
 -- long names
 keymap("i", "cmct", "CmeMdp3ConflatedTcp", { desc = "CmeMdp3ConflatedTcp" })
 keymap("i", "rdn", "ReferenceDataNotification", { desc = "ReferenceDataNotification" })
+keymap("i", "msp", "MessageSubscriberProxy", { desc = "MessageSubscriberProxy" })
+keymap("i", "mpp", "MessagePublisherProxy", { desc = "MessagePublisherProxy" })
