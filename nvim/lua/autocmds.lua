@@ -53,3 +53,12 @@ autocmd(
         end,
     }
 )
+
+autocmd(
+    "TermClose",
+    {
+        callback = function()
+            vim.cmd("bdelete!")
+        end
+    }
+)

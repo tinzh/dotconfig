@@ -261,22 +261,6 @@ plugins = {
         "oguzbilgic/vim-gdiff",
     },
 
-    -- file finding
-    -- {
-    --     "theprimeagen/harpoon",
-    --     branch = "harpoon2",
-    --     config = function()
-    --         require("harpoon").setup({
-    --             -- menu = {
-    --             --     width = vim.api.nvim_win_get_width(0) / 2
-    --             -- }
-    --         })
-    --     end,
-    --     dependencies = {
-    --         "nvim-lua/plenary.nvim"
-    --     },
-    -- },
-
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
@@ -351,6 +335,8 @@ plugins = {
             require("lspconfig").clangd.setup({
                 cmd = {"clangd", "--header-insertion=never"},
             })
+
+            -- vim.cmd("highlight def link @lsp.mod.constructorOrDestructor.cpp @function")
         end,
         dependencies = {
             "williamboman/mason.nvim",

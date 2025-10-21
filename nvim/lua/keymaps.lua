@@ -11,6 +11,7 @@ keymap("n", "<leader>nl", "<cmd>nohl<CR>", { desc = "Remove highlighting" })
 -- insert line before/after
 keymap("n", "<CR>", "o<Esc>", { desc = "Add one line below" })
 keymap("n", "<leader><CR>", "O<Esc>", { desc = "Add one line above" })
+keymap("n", "<leader>h", "i<CR><Esc>0cw", { desc = "Wrap line below" })
 
 -- replace current word
 keymap("n", "<leader>r", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]], { desc = "Replace current word" })
@@ -20,8 +21,9 @@ keymap("n", "<leader>q", "<cmd>wa<CR><cmd>qa<CR>", { desc = "Save and quit all b
 keymap("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Quit all buffers" })
 
 -- better scrolling
-keymap( "n", "<C-d>", "<C-d>zz", { desc = "Jump"  })
-keymap( "n", "<C-u>", "<C-u>zz", { desc = "Jump"  })
+keymap( "n", "<C-c>", "<C-d>zz", { desc = "Jump" })
+keymap( "n", "<C-d>", "<C-d>zz", { desc = "Jump" })
+keymap( "n", "<C-u>", "<C-u>zz", { desc = "Jump" })
 
 -- native remaps
 keymap("n", "h", "'", { desc = "Jump to mark" })
@@ -29,6 +31,9 @@ keymap("n", "l", "@", { desc = "Run macro" })
 
 -- delete word in insert mode
 keymap("i", "<C-w>", "<C-o>db", { desc = "Delete word" })
+
+-- set wrap
+keymap("n", "<leader>sw", "<cmd>set wrap!<CR>", { desc = "Toggle wrap" })
 
 -- leap.nvim
 keymap({"n", "x", "o"}, "s", "<Plug>(leap)", { desc = "Leap" })
@@ -56,6 +61,9 @@ keymap("n", "<leader>.", "<cmd>Telescope grep_string<CR>", { desc = "Search for 
 
 -- wrap
 keymap("n", "<leader>sw", "<cmd>set wrap!<CR>", { desc = "Toggle wrap" })
+
+-- lsp remap
+keymap("n", "<leader>e", "gd", { desc = "Goto definition", remap = true })
 
 -- harpoon
 -- local mark = require("harpoon.mark")
@@ -125,6 +133,10 @@ keymap("n", "<F15>", ":tabm ", { desc = "Move tab" })
 
 -- long names
 keymap("i", "cmct", "CmeMdp3ConflatedTcp", { desc = "CmeMdp3ConflatedTcp" })
-keymap("i", "rdn", "ReferenceDataNotification", { desc = "ReferenceDataNotification" })
+keymap("i", "cn", "ContractNotification", { desc = "ContractNotification" })
 keymap("i", "msp", "MessageSubscriberProxy", { desc = "MessageSubscriberProxy" })
 keymap("i", "mpp", "MessagePublisherProxy", { desc = "MessagePublisherProxy" })
+keymap("i", "tb", "TradingBusiness::", { desc = "TradingBusiness" })
+keymap("i", "tc", "TradingCore::", { desc = "TradingCore" })
+keymap("i", "UP", "UdsPublish", { desc = "UdsPublish" })
+keymap("i", "uP", "udsPublish", { desc = "udsPublish" })
