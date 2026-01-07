@@ -360,19 +360,18 @@ plugins = {
 
     -- git conflicts
     {
-        "rhysd/conflict-marker.vim",
+        "akinsho/git-conflict.nvim",
+        version = "*",
         config = function()
-            vim.g.conflict_marker_enable_mappings = 0
-            -- vim.g.conflict_marker_highlight_group = ""
+            require("git-conflict").setup({
+                default_mappings = false,
+            })
+            vim.api.nvim_set_hl(0, "GitConflictCurrentLabel", { bg = "#355c54", bold = true })
+            vim.api.nvim_set_hl(0, "GitConflictCurrent", { bg = "#25403a" })
+            vim.api.nvim_set_hl(0, "GitConflictIncoming", { bg = "#26394d" })
+            vim.api.nvim_set_hl(0, "GitConflictIncomingLabel", { bg = "#344f69", bold = true })
 
-            vim.g.conflict_marker_begin = "^<<<<<<< .*$"
-            vim.g.conflict_marker_end = "^>>>>>>> .*$"
-
-            vim.cmd("highlight ConflictMarkerBegin guibg=#355c54")
-            vim.cmd("highlight ConflictMarkerOurs guibg=#25403a")
-            vim.cmd("highlight ConflictMarkerTheirs guibg=#26394d")
-            vim.cmd("highlight ConflictMarkerEnd guibg=#344f69")
-            vim.cmd("highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81")
+            -- vim.cmd("highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81")
         end,
     },
 

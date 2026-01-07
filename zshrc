@@ -78,6 +78,7 @@ alias grhho='grhh HEAD~'
 alias grho='grh HEAD~'
 alias grf='grff | head -n 5'
 alias grff='git reflog --decorate --color=always'
+alias gsta='git stash'
 alias gsu='git submodule update --init --recursive'
 alias gt='git tag'
 alias gtl='gt -l'
@@ -128,7 +129,7 @@ awd ndi 'nd install'
 awd n 'ca && cd ~/$wd/build/release && ninja -j 60'
 awd nk 'ca && cd ~/$wd/build/release && ninja -j 60 -k 99999'
 awd ni 'n install'
-function cpi() { echo "using version ${1:-320}"; use-wd "rsync -av install/* ~/qube/\$wd/${1:-320}" } # copy install folder to qube
+function cpi() { echo "using version ${1:-321}"; use-wd "rsync -av install/* ~/qube/\$wd/${1:-321}" } # copy install folder to qube
 function nicp() { ni && cpi $1 && rb }
 function ndicp() { ndi && cpi $1 && rb }
 

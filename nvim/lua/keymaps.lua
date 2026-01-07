@@ -21,9 +21,9 @@ keymap("n", "<leader>q", "<cmd>wa<CR><cmd>qa<CR>", { desc = "Save and quit all b
 keymap("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Quit all buffers" })
 
 -- better scrolling
-keymap( "n", "<C-c>", "<C-d>zz", { desc = "Jump" })
-keymap( "n", "<C-d>", "<C-d>zz", { desc = "Jump" })
-keymap( "n", "<C-u>", "<C-u>zz", { desc = "Jump" })
+keymap("n", "<C-c>", "<C-d>zz", { desc = "Jump" })
+keymap("n", "<C-d>", "<C-d>zz", { desc = "Jump" })
+keymap("n", "<C-u>", "<C-u>zz", { desc = "Jump" })
 
 -- native remaps
 keymap("n", "h", "'", { desc = "Jump to mark" })
@@ -40,8 +40,8 @@ keymap({"n", "x", "o"}, "s", "<Plug>(leap)", { desc = "Leap" })
 keymap({"n", "x", "o"}, "S", "<Plug>(leap-from-window)", { desc = "Leap from window" })
 
 -- quickfix menu
-keymap("n", "<leader>ce", "<cmd>cn<CR>", { desc = "Go to next quickfix" })
-keymap("n", "<leader>cn", "<cmd>cp<CR>", { desc = "Go to prev quickfix" })
+keymap("n", "<leader>ce", "<cmd>cn<CR>zz", { desc = "Go to next quickfix" })
+keymap("n", "<leader>cn", "<cmd>cp<CR>zz", { desc = "Go to prev quickfix" })
 keymap("n", "<leader>cq", "<cmd>ccl<CR>", { desc = "Close quickfix window" })
 
 -- .h/.cpp file switching
@@ -74,18 +74,23 @@ keymap("n", "<leader>e", "gd", { desc = "Goto definition", remap = true })
 -- keymap("n", "<leader>tn", ui.nav_prev, { desc = "Go to previous Harpoon mark" })
 
 -- git
-keymap("n", "gh", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk" })
-keymap("n", "gt", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
-keymap("n", "<leader>gn", "<cmd>Gitsigns nav_hunk prev<CR>zz", { desc = "Go to previous hunk" })
-keymap("n", "<leader>ge", "<cmd>Gitsigns nav_hunk next<CR>zz", { desc = "Go to next hunk" })
-keymap("n", "gm", "<cmd>BlameToggle virtual<CR>", { desc = "Toggle Git blame" })
-keymap("n", "gM", "<cmd>BlameToggle window<CR>", { desc = "Toggle Git blame" })
-keymap("n", "<leader>co", "<cmd>ConflictMarkerOurselves<CR>", { desc = "Merge conflict: choose original" })
-keymap("n", "<leader>ct", "<cmd>ConflictMarkerThemselves<CR>", { desc = "Merge conflict: choose theirs" })
-keymap("n", "<leader>cb", "<cmd>ConflictMarkerBoth<CR>", { desc = "Merge conflict: choose both" })
-keymap("n", "<leader>cv", "<cmd>ConflictMarkerNone<CR>", { desc = "Merge conflict: choose none" })
-keymap("n", "<leader>cm", "<cmd>ConflictMarkerPrevHunk<CR>", { desc = "Merge conflict: go to previous" })
-keymap("n", "<leader>ci", "<cmd>ConflictMarkerNextHunk<CR>", { desc = "Merge conflict: go to next" })
+keymap("n", "gl", "<cmd>Gitsigns nav_hunk prev<CR>zz", { desc = "Git: Go to previous hunk" })
+keymap("n", "gy", "<cmd>Gitsigns nav_hunk next<CR>zz", { desc = "Git: Go to next hunk" })
+keymap("n", "gh", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Git: Preview hunk" })
+keymap("n", "gq", "<cmd>Gitsigns setqflist all<CR>", { desc = "Git: Put hunks in quickfix" })
+keymap("n", "g.", "<Up><leader>cezzgh", { desc = "Git: Go to next hunk in quickfix", remap = true })
+keymap({"n", "v"}, "gs", "<cmd>Gitsigns stage_hunk<CR>", { desc = "Git: Stage hunk" })
+keymap({"n", "v"}, "gu", "<cmd>Gitsigns undo_stage_hunk<CR>", { desc = "Git: Undo stage hunk" })
+keymap({"n", "v"}, "gt", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Git: Reset hunk" })
+
+keymap("n", "gm", "<cmd>BlameToggle virtual<CR>", { desc = "Git: Toggle blame" })
+keymap("n", "<leader>co", "<Plug>(git-conflict-ours)", { desc = "Merge conflict: choose original" })
+keymap("n", "<leader>ct", "<Plug>(git-conflict-theirs)", { desc = "Merge conflict: choose theirs" })
+keymap("n", "<leader>cb", "<Plug>(git-conflict-both)", { desc = "Merge conflict: choose both" })
+keymap("n", "<leader>cv", "<Plug>(git-conflict-none)", { desc = "Merge conflict: choose none" })
+keymap("n", "<leader>cm", "<Plug>(git-conflict-prev-conflict)zz", { desc = "Merge conflict: go to previous" })
+keymap("n", "<leader>ci", "<Plug>(git-conflict-next-conflict)zz", { desc = "Merge conflict: go to next" })
+keymap("n", "<leader>cf", "<cmd>GitConflictListQf<CR>", { desc = "Merge conflict: put in quickfix" })
 
 -- terminal
 keymap("t", "<C-a>",  "<C-\\><C-n>", { desc = "Escape in terminal" })
@@ -136,7 +141,7 @@ keymap("i", "cmct", "CmeMdp3ConflatedTcp", { desc = "CmeMdp3ConflatedTcp" })
 keymap("i", "cn", "ContractNotification", { desc = "ContractNotification" })
 keymap("i", "msp", "MessageSubscriberProxy", { desc = "MessageSubscriberProxy" })
 keymap("i", "mpp", "MessagePublisherProxy", { desc = "MessagePublisherProxy" })
-keymap("i", "tb", "TradingBusiness::", { desc = "TradingBusiness" })
-keymap("i", "tc", "TradingCore::", { desc = "TradingCore" })
+keymap("i", "TB", "TradingBusiness::", { desc = "TradingBusiness" })
+keymap("i", "TC", "TradingCore::", { desc = "TradingCore" })
 keymap("i", "UP", "UdsPublish", { desc = "UdsPublish" })
 keymap("i", "uP", "udsPublish", { desc = "udsPublish" })
