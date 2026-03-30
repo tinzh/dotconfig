@@ -79,6 +79,7 @@ alias grho='grh HEAD~'
 alias grf='grff | head -n 5'
 alias grff='git reflog --decorate --color=always'
 alias gsta='git stash'
+alias gstak='git stash -k'
 alias gsu='git submodule update --init --recursive'
 alias gt='git tag'
 alias gtl='gt -l'
@@ -96,6 +97,7 @@ alias s='ssh -L4000:localhost:4000 chhq-sudwchp19'
 alias stop-warpd='launchctl unload /Library/LaunchAgents/com.warpd.warpd.plist'
 alias restart-warpd='stop-warpd;sleep 1;warpd'
 alias drwchrome='nohup /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --flag-switches-begin --enable-audio-service-sandbox --disable-background-timer-throttling --disable-renderer-backgrounding --disable-backgrounding-occluded-windows --enable-experimental-extension-apis --flag-switches-end &> /dev/null &'
+function ss() { ssh-copy-id "$1" 2> /dev/null; ssh "$@"}
 
 # get compile_commands right
 alias sedcc='sed -i '"'"'s/\/src\/Core\//\/submodules\/core\/src\//g;s/\/src\/CoreAppLibs\//\/submodules\/CoreAppLibs\//g;s/\/src\/ContractDataLibs\//\/submodules\/ContractDataLibs\//g;s/\/src\/ChexLib\//\/submodules\/chex_lib\/src\//g;s/src\/React/submodules\/react\/src/g'"'"
@@ -110,7 +112,7 @@ alias awd='alias-wd'
 function alias-wd-pushd() { alias $1="use-wd 'pushd ~/\$wd && {$2; popd}'" } # goto root of repo, restore dir; can't take arguments after
 alias awdp='alias-wd-pushd'
 
-# build helpers
+# Chip build helpers
 unsetopt pushdignoredups
 awd ca 'conda activate $wd'
 awd cab 'conda activate base'
@@ -164,6 +166,7 @@ function gtr() { gt | grep "3.$1" | grep "$2" | sort -r | head -n 1 }
 
 # misc configs
 set -o ignoreeof
+export DIRSTACKSIZE=5
 
 # automatically re-source .zshrc on change
 if [[ $(uname) == "Darwin" ]]; then

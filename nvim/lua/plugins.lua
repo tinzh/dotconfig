@@ -438,11 +438,6 @@ plugins = {
         event = "InsertEnter",
         config = true,
     },
-
-    -- automatic file reload
-    {
-        "djoshea/vim-autoread",
-    },
 }
 
 -- get lazy.nvim if not present

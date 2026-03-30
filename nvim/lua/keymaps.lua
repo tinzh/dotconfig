@@ -42,6 +42,8 @@ keymap({"n", "x", "o"}, "S", "<Plug>(leap-from-window)", { desc = "Leap from win
 -- quickfix menu
 keymap("n", "<leader>ce", "<cmd>cn<CR>zz", { desc = "Go to next quickfix" })
 keymap("n", "<leader>cn", "<cmd>cp<CR>zz", { desc = "Go to prev quickfix" })
+keymap("n", "cl", "<cmd>cp<CR>zz", { desc = "Go to prev quickfix" })
+keymap("n", "cy", "<cmd>cn<CR>zz", { desc = "Go to next quickfix" })
 keymap("n", "<leader>cq", "<cmd>ccl<CR>", { desc = "Close quickfix window" })
 
 -- .h/.cpp file switching
@@ -137,11 +139,11 @@ keymap("n", "<S-F3>", ":tabm ", { desc = "Move tab" })
 keymap("n", "<F15>", ":tabm ", { desc = "Move tab" })
 
 -- long names
-keymap("i", "cmct", "CmeMdp3ConflatedTcp", { desc = "CmeMdp3ConflatedTcp" })
+keymap("i", "çµç†", "CmeMdp3ConflatedTcp", { desc = "CmeMdp3ConflatedTcp" })
 keymap("i", "cn", "ContractNotification", { desc = "ContractNotification" })
-keymap("i", "msp", "MessageSubscriberProxy", { desc = "MessageSubscriberProxy" })
-keymap("i", "mpp", "MessagePublisherProxy", { desc = "MessagePublisherProxy" })
-keymap("i", "TB", "TradingBusiness::", { desc = "TradingBusiness" })
-keymap("i", "TC", "TradingCore::", { desc = "TradingCore" })
-keymap("i", "UP", "UdsPublish", { desc = "UdsPublish" })
-keymap("i", "uP", "udsPublish", { desc = "udsPublish" })
+keymap("i", "µßπ", "MessageSubscriberProxy", { desc = "MessageSubscriberProxy" })
+keymap("i", "µππ", "MessagePublisherProxy", { desc = "MessagePublisherProxy" })
+keymap("i", "†∫", "TradingBusiness", { desc = "TradingBusiness" })
+keymap("i", "†ç", "TradingCore", { desc = "TradingCore" })
+keymap("i", "¨π", "UdsPublish", { desc = "UdsPublish" })
+keymap("i", "µø", "MidOffice", { desc = "MidOffice" })

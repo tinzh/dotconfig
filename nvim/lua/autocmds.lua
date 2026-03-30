@@ -46,19 +46,22 @@ autocmd(
 )
 
 autocmd(
-    "BufEnter",
-    {
-        callback = function()
-            vim.opt_local.modifiable.value = not vim.opt_local.readonly.value
-        end,
-    }
-)
-
-autocmd(
     "TermClose",
     {
         callback = function()
             vim.cmd("bdelete!")
+        end
+    }
+)
+
+autocmd(
+    {"BufReadPost", "BufNewFile"},
+    {
+        pattern = "*.log",
+        callback = function()
+            vim.opt_local.readonly = true;
+            vim.opt_local.modifiable = false;
+            vim.opt_local.undofile = false;
         end
     }
 )
