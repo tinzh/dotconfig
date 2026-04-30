@@ -154,6 +154,7 @@ alias tfn='tail -F -n +1'
 alias cdirs='dirs -c'
 alias cdcc='cd ~/chip-configs'
 alias ccnvim='cdcc;nvim'
+alias oncnvim='cd ~/oncall;nvim'
 
 function ri() { # Run (command) In
     cd ~/$1

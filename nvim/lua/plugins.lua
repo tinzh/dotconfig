@@ -312,7 +312,7 @@ plugins = {
                     vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Go to next error" })
                     vim.keymap.set("n", "<leader>m", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename all references" })
                     vim.keymap.set("n", "k", vim.lsp.buf.hover, { buffer = bufnr, desc = "Display hover information" })
-                    vim.api.nvim_create_user_command("LZF", "LspZeroFormat", {})
+                    vim.keymap.set("n", "<leader>lzf", "<cmd>LspZeroFormat<CR>", { buffer = bufnr, desc = "Format" })
                 end
             )
 

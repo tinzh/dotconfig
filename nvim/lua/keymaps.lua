@@ -140,7 +140,7 @@ keymap("n", "<F15>", ":tabm ", { desc = "Move tab" })
 
 -- long names
 keymap("i", "çµç†", "CmeMdp3ConflatedTcp", { desc = "CmeMdp3ConflatedTcp" })
-keymap("i", "cn", "ContractNotification", { desc = "ContractNotification" })
+keymap("i", "CN", "ContractNotification", { desc = "ContractNotification" })
 keymap("i", "µßπ", "MessageSubscriberProxy", { desc = "MessageSubscriberProxy" })
 keymap("i", "µππ", "MessagePublisherProxy", { desc = "MessagePublisherProxy" })
 keymap("i", "†∫", "TradingBusiness", { desc = "TradingBusiness" })

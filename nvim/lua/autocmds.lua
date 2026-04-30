@@ -50,7 +50,8 @@ autocmd(
     {
         callback = function()
             vim.cmd("bdelete!")
-        end
+        end,
+        desc = "Delete terminal buffers on exit"
     }
 )
 
@@ -62,6 +63,36 @@ autocmd(
             vim.opt_local.readonly = true;
             vim.opt_local.modifiable = false;
             vim.opt_local.undofile = false;
-        end
+        end,
+        desc = "Make .log files readonly and not modifiable"
+    }
+)
+
+-- after timeout, close neovim
+local timeoutDays = 4
+local timeoutMin = 4 * 24 * 60
+local idleTimer = vim.loop.new_timer()
+local function resetTimer()
+    idleTimer:stop()
+    idleTimer:start(timeoutMin * 60 * 1000, 0, vim.schedule_wrap(function() vim.cmd("qa!") end))
+end
+
+autocmd(
+    {
+        "CursorMoved",
+        "CursorMovedI",
+        "InsertEnter",
+        "InsertLeave",
+        "TextChanged",
+        "TextChangedI",
+        "CmdlineEnter",
+        "CmdlineLeave",
+        "BufEnter",
+        "WinEnter",
+        "FocusGained",
+    },
+    {
+        callback = resetTimer,
+        desc = "Reset idle timer on any activitiy"
     }
 )
